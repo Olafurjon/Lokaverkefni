@@ -1,0 +1,7 @@
+
+Users - user_id, dep_id  -us_name, -email, -username, -pass, -Accesslevel, -Joined, -loggedin, -title
+Department - dep_id, -dep_name, -
+Games - game_id, -name, -developer, -Path, -dateadded, -desc
+Genre - 
+Genreinstance - 
+Hoursworked - user_id, Timestampin, timestamp out
