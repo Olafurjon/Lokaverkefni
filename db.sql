@@ -19,18 +19,18 @@ CREATE TABLE Developers
   CONSTRAINT developer_PK PRIMARY KEY (dev_id)
 );
 
-create table Genres
+CREATE TABLE Genres
 (
-  genre_id int not null AUTO_INCREMENT,
-  name varchar(35),
-  constraint genre_PK PRIMARY KEY (genre_id)
+  genre_id INT NOT NULL AUTO_INCREMENT,
+  name     VARCHAR(35),
+  CONSTRAINT genre_PK PRIMARY KEY (genre_id)
 );
 
 CREATE TABLE Users
 (
   user_id      INT         NOT NULL AUTO_INCREMENT,
   dep_id       INT,
-  us_name      VARCHAR(35) NOT NULL,
+  name         VARCHAR(75) NOT NULL,
   email        VARCHAR(50) NOT NULL,
   username     VARCHAR(35) NOT NULL,
   pass         VARCHAR(35) NOT NULL,
@@ -54,12 +54,12 @@ CREATE TABLE Games
   CONSTRAINT game_dev_FK FOREIGN KEY (dev_id) REFERENCES Developers (dev_id)
 );
 
-create table GameGenres
+CREATE TABLE GameGenres
 (
-  gamegenre_id int not null AUTO_INCREMENT,
-  game_id int,
-  genre_id int,
-  constraint gamegenre_PK PRIMARY KEY (gamegenre_id),
-  constraint gamegenre_game_FK FOREIGN KEY (game_id) REFERENCES Games (game_id),
-  constraint gamegenre_genre_FK FOREIGN KEY (genre_id) REFERENCES Genres (genre_id)
+  gamegenre_id INT NOT NULL AUTO_INCREMENT,
+  game_id      INT,
+  genre_id     INT,
+  CONSTRAINT gamegenre_PK PRIMARY KEY (gamegenre_id),
+  CONSTRAINT gamegenre_game_FK FOREIGN KEY (game_id) REFERENCES Games (game_id),
+  CONSTRAINT gamegenre_genre_FK FOREIGN KEY (genre_id) REFERENCES Genres (genre_id)
 );
