@@ -5,9 +5,8 @@ USE `3010943379_kepler_games`;
 -- ====================================*** CREATE TABLE SECTION ***===================================
 CREATE TABLE Departments
 (
-  dep_id      INT         NOT NULL AUTO_INCREMENT,
-  name        VARCHAR(35) NOT NULL,
-  description VARCHAR(115),
+  dep_id INT         NOT NULL AUTO_INCREMENT,
+  name   VARCHAR(35) NOT NULL,
   CONSTRAINT dep_PK PRIMARY KEY (dep_id)
 );
 
@@ -33,7 +32,7 @@ CREATE TABLE Users
   name         VARCHAR(75) NOT NULL,
   email        VARCHAR(50) NOT NULL,
   username     VARCHAR(35) NOT NULL,
-  pass         VARCHAR(35) NOT NULL,
+  pass         VARCHAR(35) NOT NULL DEFAULT 'pass.123',
   access_level TINYINT(1),
   joined       DATETIME,
   loggedin     BINARY      NOT NULL,
@@ -47,7 +46,7 @@ CREATE TABLE DeveloperMembers
   devmember_id INT NOT NULL AUTO_INCREMENT,
   user_id      INT NOT NULL,
   dev_id       INT NOT NULL,
-  dev_title VARCHAR(35),
+  dev_title    VARCHAR(35),
   CONSTRAINT PRIMARY KEY (devmember_id),
   CONSTRAINT FOREIGN KEY (user_id) REFERENCES Users (user_id),
   CONSTRAINT FOREIGN KEY (dev_id) REFERENCES Developers (dev_id)
