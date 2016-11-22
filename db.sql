@@ -42,6 +42,17 @@ CREATE TABLE Users
   CONSTRAINT user_dep_FK FOREIGN KEY (dep_id) REFERENCES Departments (dep_id)
 );
 
+CREATE TABLE DeveloperMembers
+(
+  devmember_id INT NOT NULL AUTO_INCREMENT,
+  user_id      INT NOT NULL,
+  dev_id       INT NOT NULL,
+  dev_title VARCHAR(35),
+  CONSTRAINT PRIMARY KEY (devmember_id),
+  CONSTRAINT FOREIGN KEY (user_id) REFERENCES Users (user_id),
+  CONSTRAINT FOREIGN KEY (dev_id) REFERENCES Developers (dev_id)
+);
+
 CREATE TABLE Games
 (
   game_id     INT         NOT NULL AUTO_INCREMENT,
