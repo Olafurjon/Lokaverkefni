@@ -3,7 +3,15 @@ DROP DATABASE IF EXISTS `3010943379_kepler_games`;
 CREATE DATABASE `3010943379_kepler_games`;
 USE `3010943379_kepler_games`;
 -- ====================================*** CREATE TABLE SECTION ***===================================
-create TABLE Developers
+CREATE TABLE Departments
+(
+  dep_id      INT         NOT NULL AUTO_INCREMENT,
+  name        VARCHAR(35) NOT NULL,
+  description VARCHAR(115),
+  CONSTRAINT dep_PK PRIMARY KEY (dep_id)
+);
+
+CREATE TABLE Developers
 (
   dev_id      INT NOT NULL AUTO_INCREMENT,
   name        VARCHAR(35),
@@ -21,6 +29,7 @@ CREATE TABLE Genres
 CREATE TABLE Users
 (
   user_id      INT         NOT NULL AUTO_INCREMENT,
+  dep_id       INT,
   name         VARCHAR(75) NOT NULL,
   email        VARCHAR(50) NOT NULL,
   username     VARCHAR(35) NOT NULL,
@@ -29,7 +38,8 @@ CREATE TABLE Users
   joined       DATETIME,
   loggedin     BINARY      NOT NULL,
   title        VARCHAR(20),
-  CONSTRAINT user_PK PRIMARY KEY (user_id)
+  CONSTRAINT user_PK PRIMARY KEY (user_id),
+  CONSTRAINT user_dep_FK FOREIGN KEY (dep_id) REFERENCES Departments (dep_id)
 );
 
 CREATE TABLE DeveloperMembers
