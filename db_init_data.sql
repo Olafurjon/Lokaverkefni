@@ -14,4 +14,4 @@ INSERT INTO genres (name) VALUES ('Sports');
 
 -- Games
 
--- Users
+-- Departments
