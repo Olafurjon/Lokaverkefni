@@ -13,7 +13,7 @@ CREATE TABLE Departments
 CREATE TABLE Developers
 (
   dev_id      INT NOT NULL AUTO_INCREMENT,
-  name        VARCHAR(35),
+  name        VARCHAR(35) UNIQUE,
   description VARCHAR(115),
   CONSTRAINT developer_PK PRIMARY KEY (dev_id)
 );
@@ -31,11 +31,11 @@ CREATE TABLE Users
   dep_id       INT,
   name         VARCHAR(75) NOT NULL,
   email        VARCHAR(50) NOT NULL,
-  username     VARCHAR(35) NOT NULL,
+  username     VARCHAR(35) NOT NULL UNIQUE,
   pass         VARCHAR(35) NOT NULL DEFAULT 'pass.123',
-  access_level TINYINT(1),
+  access_level INT,
   joined       DATETIME,
-  loggedin     BINARY      NOT NULL,
+  loggedin     INT                  DEFAULT '0',
   title        VARCHAR(20),
   CONSTRAINT user_PK PRIMARY KEY (user_id),
   CONSTRAINT user_dep_FK FOREIGN KEY (dep_id) REFERENCES Departments (dep_id)

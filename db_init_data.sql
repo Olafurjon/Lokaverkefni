@@ -1,3 +1,5 @@
+USE `3010943379_kepler_games`;
+
 -- Genres
 INSERT INTO genres (name) VALUES ('4X');
 INSERT INTO genres (name) VALUES ('Action');
