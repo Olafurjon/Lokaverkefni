@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="KeplerGames.exe" version="1.0.0.1" publicKeyToken="a73f77d45494988a" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="KeplerGames" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="KeplerGames.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the 
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward 
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KeplerGames.exe" size="79280">
+      <assemblyIdentity name="KeplerGames" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>wgrR231CxCD4TUWKwC32W2zisR6WhjbllD6/ji1iHRI=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MySql.Data.dll" size="348160">
+      <assemblyIdentity name="MySql.Data" version="6.1.6.0" publicKeyToken="C5687FC88969C44D" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>xDEbkuhLn52vs3FBhqA+w7+RlW0HavUL8rO0glSk4TQ=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="KeplerGames.exe.config" size="187">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>xm4bo26HQ0LNVwz1vdPYtzhkpMnp2AI5i+f0b+OahTI=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=OLI-PC\ÓliJón" issuerKeyHash="92fb3953b14866e45a52e3c6c2d604ef29324930" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>JtDIOYZKYUHOBPTbnUaSkX7UWJBa31Giy8AjlGl7VtU=</DigestValue></Reference></SignedInfo><SignatureValue>QIjzEVT3eJiZC+QYaQ2U6z8xVnUcht6WcgiUJ4jIColASQC+/XxeVGNQx5MSwU9IJ5unde2JekmmawF9wc8y+sXAjquIp2sM2oPx+greb4tAZGsknGLV3um82EBT1wVq+y6A0JAWGjUiZSbPte7FJ/0kjmgKn7e8aSgg2dYFnVo=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>8A0meDtrVIhClKpwhM7dZR4J5R6kle4mrbEo2Sq4q9TKTSnTCU9zrVBc4ZRtnaKInI8fJYpmSNgrRzAC8zzs8hGlWP55HcKWHaIREQl6DTQYD7OcXTHTwqUvJEnNE/qEmDtXDfwl7WxtWuu+Vkt2fvASz739oOMeEqeOS+Q5uKs=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="d5567b699423c0cba251df5a9058d47e9192469ddbf404ce41614a8639c8d026" Description="" Url=""><as:assemblyIdentity name="KeplerGames.exe" version="1.0.0.1" publicKeyToken="a73f77d45494988a" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=OLI-PC\ÓliJón</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>PZU03YRpQR5aLMzSC53dEGXbHZ2CnsaTgyYdcHn250o=</DigestValue></Reference></SignedInfo><SignatureValue>HscqbJ4p31TWscfdkW5YvhD/P2WAyyvLMC4pM18x05MXpDcezCwNXKiVrW6DNqgVR+PE5a97h0Xwe/fnN0v3RxBqKWd0zmv3JeVTJg60TlTfOAhAX6PgBaDDOO4tCe4W2t5QoaUlVW0zLZNFWOMw/iLmtyBs4JuSr9lQW24Pxh4=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>8A0meDtrVIhClKpwhM7dZR4J5R6kle4mrbEo2Sq4q9TKTSnTCU9zrVBc4ZRtnaKInI8fJYpmSNgrRzAC8zzs8hGlWP55HcKWHaIREQl6DTQYD7OcXTHTwqUvJEnNE/qEmDtXDfwl7WxtWuu+Vkt2fvASz739oOMeEqeOS+Q5uKs=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIBzTCCATagAwIBAgIQE9nd3MJoKbxFYqIKMwNDNDANBgkqhkiG9w0BAQsFADAlMSMwIQYDVQQDHhoATwBMAEkALQBQAEMAXADTAGwAaQBKAPMAbjAeFw0xNjEyMDEyMTI1MDVaFw0xNzEyMDIwMzI1MDVaMCUxIzAhBgNVBAMeGgBPAEwASQAtAFAAQwBcANMAbABpAEoA8wBuMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDwDSZ4O2tUiEKUqnCEzt1lHgnlHqSV7iatsSjZKrir1MpNKdMJT3OtUFzhlG2dooicjx8limZI2CtHMALzPOzyEaVY/nkdwpYdohERCXoNNBgPs5xdMdPCpS8kSc0T+oSYO1cN/CXtbG1a675WS3Z+8BLPvf2g4x4Sp45L5Dm4qwIDAQABMA0GCSqGSIb3DQEBCwUAA4GBAFF/FonCp/BAhYle6pkN5PuOhZdVctn02n5zuviQ2Brk0VIzcSLBncEhWGDXWYf+aQAb7/CvZdwvVk+VE5cZfF8yBPRhPGVigDFBZ81hAPq1APGOFSHtSy/S8IBzSQRPG0sJPMszGfwTUsWzqCZF4aeC4ZFwuRLt1Q/xg6QlOSnK</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>
