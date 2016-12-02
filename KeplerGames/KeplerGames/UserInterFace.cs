@@ -44,7 +44,7 @@ namespace KeplerGames
             if (access == 3)
             {
                 tabcontrol.TabPages.Remove(tab_admin);
-                tabcontrol.TabPages.Remove(tab_Programmers);
+               
 
             }
 
@@ -76,6 +76,7 @@ namespace KeplerGames
                 this.tab_Programmers.Controls.Remove(tbarray[i]);
                 this.tab_review.Controls.Remove(labelarray[i]);
                 this.tab_review.Controls.Remove(tbarray[i]);
+                tbarray[4].PasswordChar = '\0';
                 labelarray[i].Visible = false;
                 tbarray[i].Visible = false;
             }
@@ -103,6 +104,7 @@ namespace KeplerGames
             tb_dynamic3.Visible = false;
             tb_dynamic4.Visible = false;
             tb_dynamic5.Visible = false;
+            tb_dynamic6.PasswordChar = '\0';
             tb_dynamic6.Visible = false;
             tb_dynamic7.Visible = false;
             tb_dynamic8.Visible = false;
@@ -131,7 +133,7 @@ namespace KeplerGames
         {
             dgv_Games.DataSource = null;
             dgv_Games.Rows.Clear();
-            DataSet table = callDB.InfoToDataGrid("SELECT game_id,Games.name,Developers.name AS Developers, path, dateadded, games.description AS GameDescription, developers.description AS DevelopersDescription FROM games JOIN Developers ON games.dev_id = Developers.dev_id"); /*Bý ég til dataset töflu úr SQL queryinu*/
+            DataSet table = callDB.InfoToDataGrid("SELECT game_id,Games.name,Developers.name AS Developers, path, dateadded, games.description FROM games JOIN Developers ON games.dev_id = Developers.dev_id"); /*Bý ég til dataset töflu úr SQL queryinu*/
             dgv_Games.DataSource = table.Tables[0]; /*Dúndrar dataset töflunni inní datagriddið*/
             dgv_Games.Rows[0].Selected = true; /*Velur fyrstu röðina*/
             HideDynamic();/*Felur textboxin*/
@@ -274,7 +276,7 @@ namespace KeplerGames
             HideDynamic();
             dgv_reviews.DataSource = null;
             dgv_reviews.Rows.Clear();
-            DataSet table = callDB.InfoToDataGrid("SELECT game_id,Games.name,Developers.name AS Developers, path, dateadded, games.description AS GameDescription, developers.description AS DevelopersDescription FROM games JOIN Developers ON games.dev_id = Developers.dev_id");
+            DataSet table = callDB.InfoToDataGrid("SELECT game_id,Games.name,Developers.name AS Developers, path, dateadded, games.description FROM games JOIN Developers ON games.dev_id = Developers.dev_id");
             dgv_reviews.DataSource = table.Tables[0];
 
             Label[] labelarray = { label2, label3, label4, label5, label6, label7, label8, label9, label10, label11, label12, label3, label14, label15, label16 };
@@ -430,7 +432,7 @@ namespace KeplerGames
         {
             dgv_Programmes.DataSource = null;
             dgv_Programmes.Rows.Clear();
-            DataSet table = callDB.InfoToDataGrid("SELECT game_id,Games.name,Developers.name AS Developers, path, dateadded, games.description AS GameDescription, developers.description AS DevelopersDescription FROM games JOIN Developers ON games.dev_id = Developers.dev_id");
+            DataSet table = callDB.InfoToDataGrid("SELECT game_id,Games.name,Developers.name AS Developers, path, dateadded, games.description FROM games JOIN Developers ON games.dev_id = Developers.dev_id");
             dgv_Programmes.DataSource = table.Tables[0];
             dgv_Programmes.Rows[0].Selected = true;
             HideDynamic();
@@ -757,10 +759,11 @@ namespace KeplerGames
 
         private void rb_showGames_CheckedChanged(object sender, EventArgs e)
         {
-            /*SELECT game_id,Games.name,Developers.name AS Developers, path, dateadded, games.description AS GameDescription, developers.description AS DevelopersDescription FROM games
+            /*SELECT game_id,Games.name,Developers.name AS Developers, path, dateadded, games.description , developers.description AS Dev.Description FROM games
              JOIN Developers ON games.dev_id = Developers.dev_id
               */
-            DataSet table = callDB.InfoToDataGrid("SELECT game_id,Games.name,Developers.name AS Developers, path, dateadded, games.description AS GameDescription, developers.description AS DevelopersDescription FROM games JOIN Developers ON games.dev_id = Developers.dev_id");
+           
+            DataSet table = callDB.InfoToDataGrid("SELECT game_id,Games.name,Developers.name AS Developers, path, dateadded, games.description  FROM games JOIN Developers ON games.dev_id = Developers.dev_id");
             dgv_admin_users.DataSource = table.Tables[0];
         }
 
