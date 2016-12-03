@@ -73,3 +73,14 @@ CREATE TABLE GameGenres
   CONSTRAINT gamegenre_game_FK FOREIGN KEY (game_id) REFERENCES Games (game_id),
   CONSTRAINT gamegenre_genre_FK FOREIGN KEY (genre_id) REFERENCES Genres (genre_id)
 );
+
+CREATE TABLE Comments (
+  comment_id INT NOT NULL AUTO_INCREMENT,
+  date       DATETIME,
+  user_id    INT,
+  game_id    INT,
+  comment    VARCHAR(255),
+  CONSTRAINT comments_PK PRIMARY KEY (comment_id),
+  CONSTRAINT comment_user_FK FOREIGN KEY (user_id) REFERENCES Users (user_id),
+  CONSTRAINT comment_game_FK FOREIGN KEY (game_id) REFERENCES Games (game_id)
+);

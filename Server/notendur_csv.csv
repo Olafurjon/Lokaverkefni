@@ -1,0 +1,9 @@
+﻿user_id,dep_id,dep_name,name,firstname,lastname,email,username,access_level,joined,loggedin,title
+1,4,Bossman,Ólafur Jón Valgeirsson,Ólafur,Valgeirsson,Olafurjonb@hotmail.com,OlaVal,4,21.11.2016,0,CEO
+2,4,Bossman,Valdimar Gunnarsson,Valdimar,Gunnarsson,valdi1212@gmail.com,valdi1212,4,21.11.2016,0,CEO
+3,3,Programmers,Andrea Klara Hauksdóttir,Andrea,Hauksdóttir,Andreahar@gmail.com,AndHau,3,21.11.2016,0,Programmer
+4,3,Programmers,Guðmundur Steindórsson,Guðmundur,Steindórsson,Gummisteinn@gmail.com,GudSte,3,21.11.2016,0,Programmer
+5,2,Reviewers,Halldor V. Jónsson,Halldór,Jónsson,HalliVal@hotmail.com,HalJon,2,21.11.2016,0,Reviewer
+6,2,Reviewers,Harpa Hjaltested,Harpa,Hjaltested,Harpa@hotmail.com,Harhja,2,21.11.2016,0,Reviewer
+7,1,StandardUsers,Hrannar Arason,Hrannar,Arason,Hrannaara@hotmail.com,HraAra,1,21.11.2016,0,StandardUser
+8,1,StandardUsers,Ingibjörg J. Guðlaugsdóttir,Ingibjörg,Guðlaugsdóttir,ingagugga@hotmail.com,IngGud,1,21.11.2016,0,StandardUser

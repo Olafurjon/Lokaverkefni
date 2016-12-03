@@ -29,3 +29,18 @@ C:\Users\3010943379\OneDrive\tskoli2016  seinni\Lokaverkefni\C#\Windows Form\Kep
 C:\Users\3010943379\OneDrive\tskoli2016  seinni\Lokaverkefni\C#\Windows Form\KeplerGames\KeplerGames\obj\Debug\KeplerGames.VerifyPass.resources
 C:\Users\3010943379\OneDrive\tskoli2016  seinni\Lokaverkefni\C#\Windows Form\KeplerGames\KeplerGames\obj\Debug\KeplerGames.exe.manifest
 C:\Users\3010943379\OneDrive\tskoli2016  seinni\Lokaverkefni\C#\Windows Form\KeplerGames\KeplerGames\obj\Debug\KeplerGames.application
+D:\Tskoli 2016 seinni önn\Git\Lokaverkefni\KeplerGames\KeplerGames\bin\Debug\KeplerGames.exe.config
+D:\Tskoli 2016 seinni önn\Git\Lokaverkefni\KeplerGames\KeplerGames\obj\Debug\KeplerGames.exe
+D:\Tskoli 2016 seinni önn\Git\Lokaverkefni\KeplerGames\KeplerGames\obj\Debug\KeplerGames.pdb
+D:\Tskoli 2016 seinni önn\Git\Lokaverkefni\KeplerGames\KeplerGames\bin\Debug\KeplerGames.exe.manifest
+D:\Tskoli 2016 seinni önn\Git\Lokaverkefni\KeplerGames\KeplerGames\bin\Debug\KeplerGames.application
+D:\Tskoli 2016 seinni önn\Git\Lokaverkefni\KeplerGames\KeplerGames\bin\Debug\KeplerGames.exe
+D:\Tskoli 2016 seinni önn\Git\Lokaverkefni\KeplerGames\KeplerGames\bin\Debug\KeplerGames.pdb
+D:\Tskoli 2016 seinni önn\Git\Lokaverkefni\KeplerGames\KeplerGames\obj\Debug\KeplerGames.csprojResolveAssemblyReference.cache
+D:\Tskoli 2016 seinni önn\Git\Lokaverkefni\KeplerGames\KeplerGames\obj\Debug\KeplerGames.LoginWindow.resources
+D:\Tskoli 2016 seinni önn\Git\Lokaverkefni\KeplerGames\KeplerGames\obj\Debug\KeplerGames.Properties.Resources.resources
+D:\Tskoli 2016 seinni önn\Git\Lokaverkefni\KeplerGames\KeplerGames\obj\Debug\KeplerGames.UserInterFace.resources
+D:\Tskoli 2016 seinni önn\Git\Lokaverkefni\KeplerGames\KeplerGames\obj\Debug\KeplerGames.VerifyPass.resources
+D:\Tskoli 2016 seinni önn\Git\Lokaverkefni\KeplerGames\KeplerGames\obj\Debug\KeplerGames.csproj.GenerateResource.Cache
+D:\Tskoli 2016 seinni önn\Git\Lokaverkefni\KeplerGames\KeplerGames\obj\Debug\KeplerGames.exe.manifest
+D:\Tskoli 2016 seinni önn\Git\Lokaverkefni\KeplerGames\KeplerGames\obj\Debug\KeplerGames.application

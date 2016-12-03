@@ -98,3 +98,202 @@ CREATE PROCEDURE UsersDelete(username VARCHAR(35))
     WHERE users.username = username;
   END $$
 DELIMITER ;
+
+-- CRUD for Games table --
+
+/*
+  @name: GamesCreate
+  @role: Inserts a row into Games
+  @parameters:
+    dev_id INT
+    name VARCHAR(35)
+    path VARCHAR(100)
+    description VARCHAR(115)
+  @created: 3.12.2016
+  @author: Valdimar Gunnarsson
+  @description: See @role
+ */
+DELIMITER $$
+DROP PROCEDURE IF EXISTS GamesCreate $$
+CREATE PROCEDURE GamesCreate(dev_id INT, name VARCHAR(35), path VARCHAR(100), description VARCHAR(115))
+  BEGIN
+    INSERT INTO games (dev_id, name, path, dateadded, description)
+    VALUES (dev_id, name, path, CURDATE(), description);
+  END $$
+DELIMITER $$
+
+/*
+  @name: GamesRead
+  @role: Read a row from Games
+  @parameters:
+   name VARCHAR(35)
+  @created: 3.12.2016
+  @author: Valdimar Gunnarsson
+  @description: See @role
+ */
+DELIMITER $$
+DROP PROCEDURE IF EXISTS GamesRead $$
+CREATE PROCEDURE GamesRead(game_name VARCHAR(35))
+  BEGIN
+    SELECT
+      games.name,
+      games.dateadded,
+      games.description,
+      developers.name
+    FROM games
+      INNER JOIN developers ON games.dev_id = developers.dev_id
+    WHERE game_name = games.name;
+  END $$
+DELIMITER ;
+
+/*
+  @name: GamesUpdate
+  @role: Updates a single row in Games
+  @parameters:
+    dev_id INT
+    name VARCHAR(35)
+    path VARCHAR(100)
+    description VARCHAR(115)
+  @created: 3.12.2016
+  @author: Valdimar Gunnarsson
+  @description: See @role
+ */
+DELIMITER $$
+DROP PROCEDURE IF EXISTS GamesUpdate $$
+CREATE PROCEDURE GamesUpdate(dev_id INT, game_name VARCHAR(35), path VARCHAR(100), description VARCHAR(115))
+  BEGIN
+    UPDATE games
+    SET dev_id = dev_id, name = game_name, path = path, description = description
+    WHERE games.name = game_name;
+  END $$
+DELIMITER ;
+
+/*
+  @name: GamesDelete
+  @role: Deletes a single row from Games
+  @parameters:
+    name VARCHAR(35)
+  @created: 3.12.2016
+  @author: Valdimar Gunnarsson
+  @description: See @role
+ */
+DELIMITER $$
+DROP PROCEDURE IF EXISTS GamesDelete $$
+CREATE PROCEDURE GamesDelete(game_name VARCHAR(35))
+  BEGIN
+    DELETE FROM games
+    WHERE game_name = games.name;
+  END $$
+DELIMITER ;
+
+-- CRUD for Developers table --
+
+/*
+  @name: DevelopersCreate
+  @role: Inserts a new row into Developers
+  @parameters:
+   name VARCHAR(35)
+   description VARCHAR(115)
+  @created: 3.12.2016
+  @author: Valdimar Gunnarsson
+  @description: See @role
+ */
+DELIMITER $$
+DROP PROCEDURE IF EXISTS DevelopersCreate $$
+CREATE PROCEDURE DevelopersCreate(name VARCHAR(35), description VARCHAR(115))
+  BEGIN
+    INSERT INTO developers (name, description)
+    VALUES (name, description);
+  END $$
+DELIMITER ;
+
+/*
+  @name: DevelopersRead
+  @role: Selects a single row from Developers
+  @parameters:
+    name VARCHAR(35)
+  @created: 3.12.2016
+  @author: Valdimar Gunnarsson
+  @description: See @role
+ */
+DELIMITER $$
+DROP PROCEDURE IF EXISTS DevelopersRead $$
+CREATE PROCEDURE DevelopersRead(name VARCHAR(35))
+  BEGIN
+    SELECT (name, description)
+    FROM developers
+    WHERE name = name;
+  END $$
+DELIMITER ;
+
+/*
+  @name: DevelopersUpdate
+  @role: Updates a single row from Developers
+  @parameters:
+   name VARCHAR(35)
+   description VARCHAR(115)
+  @created: 3.12.2016
+  @author: Valdimar Gunnarsson
+  @description: See @role
+ */
+DELIMITER $$
+DROP PROCEDURE IF EXISTS DevelopersUpdate $$
+CREATE PROCEDURE DevelopersUpdate(dev_name VARCHAR(35), description VARCHAR(115))
+  BEGIN
+    UPDATE developers
+    SET description = description
+    WHERE developers.name = dev_name;
+  END $$
+DELIMITER ;
+
+/*
+  @name: DevelopersDelete
+  @role: Deletes a single row from Developers
+  @parameters:
+    name VARCHAR(35)
+  @created: 3.12.2016
+  @author: Valdimar Gunnarsson
+  @description: See @role
+ */
+DELIMITER $$
+DROP PROCEDURE IF EXISTS DevelopersDelete $$
+CREATE PROCEDURE DevelopersDelete(dev_name VARCHAR(35))
+  BEGIN
+    DELETE FROM developers
+    WHERE dev_name = developers.name;
+  END $$
+DELIMITER ;
+
+-- Miscellaneous Procedures
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS UsersList $$
+CREATE PROCEDURE UsersList()
+  BEGIN
+    SELECT
+      users.name,
+      users.email,
+      users.username,
+      users.access_level,
+      users.joined,
+      users.loggedin,
+      users.title,
+      departments.name
+    FROM users
+      INNER JOIN departments ON users.dep_id = departments.dep_id;
+  END $$
+DELIMITER ;
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS GamesList $$
+CREATE PROCEDURE GamesList()
+  BEGIN
+    SELECT
+      games.name,
+      games.dateadded,
+      games.description,
+      developers.name
+    FROM games
+      INNER JOIN developers ON games.dev_id = developers.dev_id;
+  END $$
+DELIMITER ;

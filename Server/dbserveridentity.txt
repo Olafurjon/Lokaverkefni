@@ -1,0 +1,73 @@
+
+
+CREATE TABLE Departments
+(
+  dep_id      INT        NOT NULL identity , 
+  name        VARCHAR(35) NOT NULL,
+  description VARCHAR(115),
+  CONSTRAINT dep_PK PRIMARY KEY (dep_id)
+);
+
+CREATE TABLE Developers
+(
+  dev_id      INT NOT NULL identity,
+  name        VARCHAR(35),
+  description VARCHAR(115),
+  CONSTRAINT developer_PK PRIMARY KEY (dev_id)
+);
+
+CREATE TABLE Genres
+(
+  genre_id INT NOT NULL identity,
+  name     VARCHAR(35),
+  CONSTRAINT genre_PK PRIMARY KEY (genre_id)
+);
+
+CREATE TABLE Users
+(
+  user_id      INT         NOT NULL identity,
+  dep_id       INT,
+  name         VARCHAR(75) NOT NULL,
+  email        VARCHAR(50) NOT NULL,
+  username     VARCHAR(35) NOT NULL,
+  pass         VARCHAR(35) NOT NULL,
+  access_level INT,
+  joined       DATETIME,
+  loggedin     BINARY      NOT NULL,
+  title        VARCHAR(20),
+  CONSTRAINT user_PK PRIMARY KEY (user_id),
+  CONSTRAINT user_dep_FK FOREIGN KEY (dep_id) REFERENCES Departments (dep_id)
+);
+
+CREATE TABLE DeveloperMembers
+(
+  devmember_id INT NOT NULL identity,
+  user_id      INT NOT NULL,
+  dev_id       INT NOT NULL,
+  dev_title VARCHAR(35),
+  CONSTRAINT devmember_id_pk  PRIMARY KEY (devmember_id),
+  CONSTRAINT devm_user_id_Fk FOREIGN KEY (user_id) REFERENCES Users (user_id),
+  CONSTRAINT devmember_id_fk  FOREIGN KEY (dev_id) REFERENCES Developers (dev_id)
+);
+
+CREATE TABLE Games
+(
+  game_id     INT         NOT NULL identity,
+  name        VARCHAR(35) NOT NULL,
+  dev_id      INT,
+  path        VARCHAR(100),
+  dateadded   DATETIME,
+  description VARCHAR(115),
+  CONSTRAINT game_PK PRIMARY KEY (game_id),
+  CONSTRAINT game_dev_FK FOREIGN KEY (dev_id) REFERENCES Developers (dev_id)
+);
+
+CREATE TABLE GameGenres
+(
+  gamegenre_id INT NOT NULL identity,
+  game_id      INT,
+  genre_id     INT,
+  CONSTRAINT gamegenre_PK PRIMARY KEY (gamegenre_id),
+  CONSTRAINT gamegenre_game_FK FOREIGN KEY (game_id) REFERENCES Games (game_id),
+  CONSTRAINT gamegenre_genre_FK FOREIGN KEY (genre_id) REFERENCES Genres (genre_id)
+);

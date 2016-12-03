@@ -470,5 +470,37 @@ namespace KeplerGames /*HÖF: Ólafur Jón Valgeirsson*/
             CloseConnection();
         } /*Finnur ID á forritaranum svo hann þarf bara að setja pathið, Programmer Panel*/
 
+        public void UserLoggedinout(int x, string username)
+        {
+            if (OpenConnection() == true)
+            {
+                query = "UPDATE Users SET LoggedIn = "+x+" WHERE username = '" + username + "'";
+                sqlcommand = new MySqlCommand(query, sqlconnection);
+                sqlreader = sqlcommand.ExecuteReader();
+                CloseConnection();
+            }
+            CloseConnection();
+        }
+
+        public int IsUserLoggedIN(string username)
+        {
+            int status = 3;
+            if (OpenConnection() == true)
+            {
+                query = "SELECT LoggedIn FROM users WHERE username ='" + username + "'";
+                sqlcommand = new MySqlCommand(query, sqlconnection);
+                sqlreader = sqlcommand.ExecuteReader();
+                while (sqlreader.Read())
+                {
+                    status = Convert.ToInt32(sqlreader.GetValue(0));
+                   
+                }
+                CloseConnection();
+                return status;
+            }
+            CloseConnection();
+            return status;
+        }
+
     }
 }
