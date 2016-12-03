@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserInterFace));
             this.tabcontrol = new System.Windows.Forms.TabControl();
             this.tab_games = new System.Windows.Forms.TabPage();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.bt_rungame = new System.Windows.Forms.Button();
             this.dgv_Games = new System.Windows.Forms.DataGridView();
             this.tab_review = new System.Windows.Forms.TabPage();
@@ -110,9 +111,10 @@
             this.tb_customquery = new System.Windows.Forms.TextBox();
             this.dgv_admin_users = new System.Windows.Forms.DataGridView();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.bt_logout = new System.Windows.Forms.Button();
             this.tabcontrol.SuspendLayout();
             this.tab_games.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Games)).BeginInit();
             this.tab_review.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_reviews)).BeginInit();
@@ -120,7 +122,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Programmes)).BeginInit();
             this.tab_admin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_admin_users)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabcontrol
@@ -148,6 +149,16 @@
             this.tab_games.Text = "Games";
             this.tab_games.UseVisualStyleBackColor = true;
             this.tab_games.Enter += new System.EventHandler(this.tab_games_Enter);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(10, 330);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(453, 223);
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
             // 
             // bt_rungame
             // 
@@ -299,6 +310,7 @@
             // 
             // tab_admin
             // 
+            this.tab_admin.Controls.Add(this.bt_logout);
             this.tab_admin.Controls.Add(this.bt_execute2);
             this.tab_admin.Controls.Add(this.bt_execute);
             this.tab_admin.Controls.Add(this.rb_delete_genre);
@@ -993,15 +1005,15 @@
             this.dgv_admin_users.TabIndex = 0;
             this.dgv_admin_users.SelectionChanged += new System.EventHandler(this.dgv_admin_users_SelectionChanged);
             // 
-            // pictureBox1
+            // bt_logout
             // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(10, 330);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(453, 223);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.bt_logout.Location = new System.Drawing.Point(777, 0);
+            this.bt_logout.Name = "bt_logout";
+            this.bt_logout.Size = new System.Drawing.Size(113, 23);
+            this.bt_logout.TabIndex = 72;
+            this.bt_logout.Text = "Log Out";
+            this.bt_logout.UseVisualStyleBackColor = true;
+            this.bt_logout.Click += new System.EventHandler(this.bt_logout_Click);
             // 
             // UserInterFace
             // 
@@ -1015,6 +1027,7 @@
             this.Text = "UserInterFace";
             this.tabcontrol.ResumeLayout(false);
             this.tab_games.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Games)).EndInit();
             this.tab_review.ResumeLayout(false);
             this.tab_review.PerformLayout();
@@ -1024,7 +1037,6 @@
             this.tab_admin.ResumeLayout(false);
             this.tab_admin.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_admin_users)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1113,5 +1125,6 @@
         private System.Windows.Forms.Button bt_programmer2;
         private System.Windows.Forms.Button bt_programmers_rungame;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button bt_logout;
     }
 }

@@ -18,7 +18,7 @@ namespace KeplerGames
     {
       
         DatabaseClass callDB = new DatabaseClass();
-
+        
         public UserInterFace()
         {
             InitializeComponent();
@@ -26,26 +26,32 @@ namespace KeplerGames
             string loggedinUser = "Nobody";
             loggedinUser = LoginWindow.uniuser;
             access = LoginWindow.level;
+            int userloggedin = callDB.IsUserLoggedIN(LoginWindow.userInfo[0]);
+
 
             if (access == 1)
             {
                 tabcontrol.TabPages.Remove(tab_admin);
                 tabcontrol.TabPages.Remove(tab_Programmers);
                 tabcontrol.TabPages.Remove(tab_review);
-
             }
             if (access == 2)
             {
                 tabcontrol.TabPages.Remove(tab_admin);
                 tabcontrol.TabPages.Remove(tab_Programmers);
-
-
             }
             if (access == 3)
             {
                 tabcontrol.TabPages.Remove(tab_admin);
-               
+            }
 
+            if (userloggedin == 0)
+            {
+                bt_logout.Text = "Start Working";
+            }
+            else
+            {
+                bt_logout.Text = "Quit Working";
             }
 
 
@@ -128,9 +134,13 @@ namespace KeplerGames
         public static int letmein; //*** í vinnslu, checkar password verify fyrir delete, verður klárað ef tími gefst til
         public string gamepath;
 
+        
+
         /*Tab-Games*/
         private void tab_games_Enter(object sender, EventArgs e)
         {
+            int userloggedin = callDB.IsUserLoggedIN(LoginWindow.userInfo[0]);
+            this.tab_games.Controls.Add(bt_logout);
             dgv_Games.DataSource = null;
             dgv_Games.Rows.Clear();
             DataSet table = callDB.InfoToDataGrid("SELECT game_id,Games.name,Developers.name AS Developers, path, dateadded, games.description FROM games JOIN Developers ON games.dev_id = Developers.dev_id"); /*Bý ég til dataset töflu úr SQL queryinu*/
@@ -179,6 +189,7 @@ namespace KeplerGames
 
 
         }
+        
 
         private void dgv_Games_SelectionChanged(object sender, EventArgs e)
         {
@@ -272,6 +283,8 @@ namespace KeplerGames
 
         private void tab_review_Enter(object sender, EventArgs e) /*Þegar er ENTERAÐ þá refreshast taflan og sýnir allt úr games og gerir það sem refreshar*/
         {
+            int userloggedin = callDB.IsUserLoggedIN(LoginWindow.userInfo[0]);
+            this.tab_review.Controls.Add(bt_logout);
             ClearLabels();
             HideDynamic();
             dgv_reviews.DataSource = null;
@@ -430,6 +443,8 @@ namespace KeplerGames
         /*Access Level 3, geta sett inn sýna eigin leiki í gagnagrunninn ásamt því að spila leikina */
         private void tab_Programmers_Enter(object sender, EventArgs e)
         {
+            int userloggedin = callDB.IsUserLoggedIN(LoginWindow.userInfo[0]);
+            this.tab_Programmers.Controls.Add(bt_logout);
             dgv_Programmes.DataSource = null;
             dgv_Programmes.Rows.Clear();
             DataSet table = callDB.InfoToDataGrid("SELECT game_id,Games.name,Developers.name AS Developers, path, dateadded, games.description FROM games JOIN Developers ON games.dev_id = Developers.dev_id");
@@ -643,6 +658,8 @@ namespace KeplerGames
         /*Getur basically manipulate-að allt í gagnagrunninum*/
         private void tab_admin_Enter(object sender, EventArgs e)
         {
+            int userloggedin = callDB.IsUserLoggedIN(LoginWindow.userInfo[0]);
+            this.tab_admin.Controls.Add(bt_logout);
             dgv_admin_users.DataSource = null;
             dgv_admin_users.Rows.Clear();
             DataSet table = callDB.InfoToDataGrid("SELECT * FROM USERS");
@@ -2295,7 +2312,40 @@ namespace KeplerGames
 
         }
 
-        
+        private void bt_logout_Click(object sender, EventArgs e)
+        {
+           int userloggedin = callDB.IsUserLoggedIN(LoginWindow.userInfo[0]);
+            if (userloggedin == 1)
+            {
+                try
+                {
+                    callDB.UserLoggedinout(0, LoginWindow.userInfo[0]);
+                    MessageBox.Show(LoginWindow.userInfo[0] + " Logged Out");
+                    bt_logout.Text = "Start Working";
+                }
+                catch (MySqlException ex)
+                {
+
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else if (userloggedin == 0)
+            {
+                try
+                {
+                    callDB.UserLoggedinout(1, LoginWindow.userInfo[0]);
+                    MessageBox.Show(LoginWindow.userInfo[0] + " Logged In");
+                    bt_logout.Text = "Quit Working";
+                }
+                catch (MySqlException ex)
+                {
+
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+
+        }
     }
     /*Admin Panel End*/
 }
