@@ -1,0 +1,26 @@
+$(document).ready(function()
+{
+    $('sida1').click(function(){
+        $('event1').remove()
+        $('event1').html("<span class="image"><img src="images/djamm.jpg" alt=""/></span>
+						<div class="content">
+							<h2><?php $sql = "SELECT Nafn FROM vidburdir where Id='2';";
+							$q = $connection->query($sql);
+							echo $q->fetch()[0]; ?></h2>
+							<p><?php $sql ="SELECT Description FROM vidburdir where Id='2';";
+							$q = $connection->query($sql);
+							echo $q->fetch()[0] ?></p>
+							<ul class="actions">
+									<li>
+									<a href="#" class="button special">Fá miða!</a> 
+									<?php 
+										$sql = "SELECT Miðar from vidburdir where Id='2';";
+										$q = $connection->query($sql);
+										echo $q->fetch()[0]." miðar eftir.";	 
+									?> 
+									</li>
+								</ul>
+							</div>)";
+        });
+    
+    });
