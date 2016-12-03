@@ -143,7 +143,7 @@ namespace KeplerGames
             this.tab_games.Controls.Add(bt_logout);
             dgv_Games.DataSource = null;
             dgv_Games.Rows.Clear();
-            DataSet table = callDB.InfoToDataGrid("SELECT game_id,Games.name,Developers.name AS Developers, path, dateadded, games.description FROM games JOIN Developers ON games.dev_id = Developers.dev_id"); /*Bý ég til dataset töflu úr SQL queryinu*/
+            DataSet table = callDB.InfoToDataGrid("CALL GamesList()"); /*Bý ég til dataset töflu úr SQL queryinu*/
             dgv_Games.DataSource = table.Tables[0]; /*Dúndrar dataset töflunni inní datagriddið*/
             dgv_Games.Rows[0].Selected = true; /*Velur fyrstu röðina*/
             HideDynamic();/*Felur textboxin*/
@@ -289,7 +289,7 @@ namespace KeplerGames
             HideDynamic();
             dgv_reviews.DataSource = null;
             dgv_reviews.Rows.Clear();
-            DataSet table = callDB.InfoToDataGrid("SELECT game_id,Games.name,Developers.name AS Developers, path, dateadded, games.description FROM games JOIN Developers ON games.dev_id = Developers.dev_id");
+            DataSet table = callDB.InfoToDataGrid("CALL GamesList()");
             dgv_reviews.DataSource = table.Tables[0];
 
             Label[] labelarray = { label2, label3, label4, label5, label6, label7, label8, label9, label10, label11, label12, label3, label14, label15, label16 };
@@ -447,7 +447,7 @@ namespace KeplerGames
             this.tab_Programmers.Controls.Add(bt_logout);
             dgv_Programmes.DataSource = null;
             dgv_Programmes.Rows.Clear();
-            DataSet table = callDB.InfoToDataGrid("SELECT game_id,Games.name,Developers.name AS Developers, path, dateadded, games.description FROM games JOIN Developers ON games.dev_id = Developers.dev_id");
+            DataSet table = callDB.InfoToDataGrid("CALL GamesList()");
             dgv_Programmes.DataSource = table.Tables[0];
             dgv_Programmes.Rows[0].Selected = true;
             HideDynamic();
