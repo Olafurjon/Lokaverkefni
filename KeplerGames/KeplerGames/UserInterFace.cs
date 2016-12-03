@@ -443,6 +443,7 @@ namespace KeplerGames
         /*Access Level 3, geta sett inn sýna eigin leiki í gagnagrunninn ásamt því að spila leikina */
         private void tab_Programmers_Enter(object sender, EventArgs e)
         {
+            HideDynamic();
             int userloggedin = callDB.IsUserLoggedIN(LoginWindow.userInfo[0]);
             this.tab_Programmers.Controls.Add(bt_logout);
             dgv_Programmes.DataSource = null;
@@ -450,7 +451,7 @@ namespace KeplerGames
             DataSet table = callDB.InfoToDataGrid("SELECT game_id,Games.name,Developers.name AS Developers, path, dateadded, games.description FROM games JOIN Developers ON games.dev_id = Developers.dev_id");
             dgv_Programmes.DataSource = table.Tables[0];
             dgv_Programmes.Rows[0].Selected = true;
-            HideDynamic();
+            
             Label[] labelarray = { label2, label3, label4, label5, label6, label7, label8, label9, label10, label11, label12, label13, label14, label15, label16 };
             TextBox[] tbarray = { tb_dynamic1, tb_dynamic2, tb_dynamic3, tb_dynamic4, tb_dynamic5, tb_dynamic6, tb_dynamic7, tb_dynamic8, tb_dynamic9, tb_dynamic10, tb_dynamic11, tb_dynamic12, tb_dynamic13, tb_dynamic14, tb_dynamic15 };
             ClearLabels();
@@ -532,7 +533,7 @@ namespace KeplerGames
 
         private void bt_programmers_Click(object sender, EventArgs e)
         {
-
+            HideDynamic();
             bt_programmers.Visible = false;
             Label[] labelarray = { label2, label3, label4, label5, label6, label7, label8, label9, label10, label11, label12, label13, label14, label15, label16 };
             TextBox[] tbarray = { tb_dynamic1, tb_dynamic2, tb_dynamic3, tb_dynamic4, tb_dynamic5, tb_dynamic6, tb_dynamic7, tb_dynamic8, tb_dynamic9, tb_dynamic10, tb_dynamic11, tb_dynamic12, tb_dynamic13, tb_dynamic14, tb_dynamic15 };
@@ -540,7 +541,7 @@ namespace KeplerGames
             dgv_Programmes.Rows.Clear();
             DataSet table = callDB.InfoToDataGrid("SELECT name,path,description FROM games");
             dgv_Programmes.DataSource = table.Tables[0];
-            HideDynamic();
+            
             bt_programmers.Visible = false;
             if (dgv_Programmes.ColumnCount > 13)
             {
@@ -658,13 +659,14 @@ namespace KeplerGames
         /*Getur basically manipulate-að allt í gagnagrunninum*/
         private void tab_admin_Enter(object sender, EventArgs e)
         {
+            HideDynamic();
             int userloggedin = callDB.IsUserLoggedIN(LoginWindow.userInfo[0]);
             this.tab_admin.Controls.Add(bt_logout);
             dgv_admin_users.DataSource = null;
             dgv_admin_users.Rows.Clear();
             DataSet table = callDB.InfoToDataGrid("SELECT * FROM USERS");
             dgv_admin_users.DataSource = table.Tables[0];
-            HideDynamic();
+            
             
 
 
@@ -701,6 +703,7 @@ namespace KeplerGames
 
         public void dgv_admin_users_SelectionChanged(object sender, EventArgs e)
         {
+            HideDynamic();
             Label[] labelarray = { label2, label3, label4, label5, label6, label7, label8, label9, label10, label11, label12, label13, label14, label15, label16 };
             TextBox[] tbarray = { tb_dynamic1, tb_dynamic2, tb_dynamic3, tb_dynamic4, tb_dynamic5, tb_dynamic6, tb_dynamic7, tb_dynamic8, tb_dynamic9, tb_dynamic10, tb_dynamic11, tb_dynamic12, tb_dynamic13, tb_dynamic14, tb_dynamic15 };
             ClearLabels();
