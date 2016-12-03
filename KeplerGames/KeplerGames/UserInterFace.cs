@@ -589,10 +589,11 @@ namespace KeplerGames
                     {
                         callDB.AddGameProgrammer(text[0], text[1], text[2], LoginWindow.userInfo[0]);
                         MessageBox.Show("Success");
-                        rb_add_game.Checked = false;
+                        bt_programmer2.Visible = false;
+                        bt_programmers.Visible = true;
                         dgv_Programmes.DataSource = null;
                         dgv_Programmes.Rows.Clear();
-                        DataSet table = callDB.InfoToDataGrid("SELECT name,dev_id,path,dateadded,description FROM games");
+                        DataSet table = callDB.InfoToDataGrid("SELECT name,description, ,dateadded dev_id,path,dateadded FROM games");
                         dgv_Programmes.DataSource = table.Tables[0];
                     }
                     catch (MySqlException ex)
@@ -1054,7 +1055,7 @@ namespace KeplerGames
                         rb_add_game.Checked = false;
                         dgv_admin_users.DataSource = null;
                         dgv_admin_users.Rows.Clear();
-                        DataSet table = callDB.InfoToDataGrid("SELECT name,dev_id,path,dateadded,description FROM games");
+                        DataSet table = callDB.InfoToDataGrid("SELECT name,description, ,dateadded dev_id,path,dateadded FROM games");
                         dgv_admin_users.DataSource = table.Tables[0];
                     }
                     catch (MySqlException ex)
@@ -1514,7 +1515,7 @@ namespace KeplerGames
                             rb_delete_game.Checked = false;
                             dgv_admin_users.DataSource = null;
                             dgv_admin_users.Rows.Clear();
-                            DataSet table = callDB.InfoToDataGrid("SELECT name,dev_id,path,dateadded,description FROM Games");
+                            DataSet table = callDB.InfoToDataGrid("SELECT name,description, ,dateadded dev_id,path,dateadded FROM games");
                             dgv_admin_users.DataSource = table.Tables[0];
                         }
                         catch (MySqlException ex)
