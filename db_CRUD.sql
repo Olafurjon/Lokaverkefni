@@ -292,9 +292,9 @@ CREATE PROCEDURE GamesList()
   BEGIN
     SELECT
       games.name AS 'Name',
-      games.dateadded AS 'Date Added',
+      developers.name AS 'Developer',
       games.description AS 'Description',
-      developers.name AS 'Developer'
+      games.dateadded AS 'Date Added'
     FROM games
       INNER JOIN developers ON games.dev_id = developers.dev_id;
   END $$
