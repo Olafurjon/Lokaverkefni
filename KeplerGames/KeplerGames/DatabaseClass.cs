@@ -523,5 +523,21 @@ namespace KeplerGames /*HÖF: Ólafur Jón Valgeirsson*/
             return status;
         }
 
+        public void AddDevMember(int user_id, int dev_id, string title)
+        {
+           
+            if (OpenConnection() == true)
+            {
+                query = "INSERT INTO `developermembers`(`user_id`, `dev_id`, `dev_title`) VALUES (@user_id,@dev_id,@title)";
+                sqlcommand = new MySqlCommand(query, sqlconnection);
+                sqlcommand.Parameters.AddWithValue("user_id", user_id);
+                sqlcommand.Parameters.AddWithValue("dev_id", dev_id);
+                sqlcommand.Parameters.AddWithValue("dev_title", title);
+                sqlcommand.ExecuteNonQuery();
+                CloseConnection();
+            }
+            CloseConnection();
+        } /*INSERT DEV*/
+
     }
 }

@@ -42,22 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-<<<<<<< HEAD
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KeplerGames.exe" size="267184">
-=======
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KeplerGames.exe" size="266704">
->>>>>>> 36a89e2ddbfda1345921d0bf0f1abc492f5c4a9f
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KeplerGames.exe" size="269232">
       <assemblyIdentity name="KeplerGames" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-<<<<<<< HEAD
-        <dsig:DigestValue>vtMTNpjjVPpLyBLsscDzsV+zOt2IzDef7Ms4zvouFiM=</dsig:DigestValue>
-=======
-        <dsig:DigestValue>r7CyW81CC0dB6GZ6DCd+CEKYYjyb1kM/Z9nNDUqrS8U=</dsig:DigestValue>
->>>>>>> 36a89e2ddbfda1345921d0bf0f1abc492f5c4a9f
+        <dsig:DigestValue>zNoqsZZijTf8BGvx4C8gSw2nAGJHsebhytc965KGRsk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

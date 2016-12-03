@@ -46,6 +46,8 @@
             this.bt_programmers = new System.Windows.Forms.Button();
             this.dgv_Programmes = new System.Windows.Forms.DataGridView();
             this.tab_admin = new System.Windows.Forms.TabPage();
+            this.rb_adddevmember = new System.Windows.Forms.RadioButton();
+            this.bt_logout = new System.Windows.Forms.Button();
             this.bt_execute2 = new System.Windows.Forms.Button();
             this.bt_execute = new System.Windows.Forms.Button();
             this.rb_delete_genre = new System.Windows.Forms.RadioButton();
@@ -111,7 +113,6 @@
             this.tb_customquery = new System.Windows.Forms.TextBox();
             this.dgv_admin_users = new System.Windows.Forms.DataGridView();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.bt_logout = new System.Windows.Forms.Button();
             this.tabcontrol.SuspendLayout();
             this.tab_games.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -310,6 +311,7 @@
             // 
             // tab_admin
             // 
+            this.tab_admin.Controls.Add(this.rb_adddevmember);
             this.tab_admin.Controls.Add(this.bt_logout);
             this.tab_admin.Controls.Add(this.bt_execute2);
             this.tab_admin.Controls.Add(this.bt_execute);
@@ -384,6 +386,28 @@
             this.tab_admin.UseVisualStyleBackColor = true;
             this.tab_admin.Enter += new System.EventHandler(this.tab_admin_Enter);
             // 
+            // rb_adddevmember
+            // 
+            this.rb_adddevmember.AutoSize = true;
+            this.rb_adddevmember.Location = new System.Drawing.Point(298, 364);
+            this.rb_adddevmember.Name = "rb_adddevmember";
+            this.rb_adddevmember.Size = new System.Drawing.Size(107, 17);
+            this.rb_adddevmember.TabIndex = 73;
+            this.rb_adddevmember.TabStop = true;
+            this.rb_adddevmember.Text = "Add Dev.member";
+            this.rb_adddevmember.UseVisualStyleBackColor = true;
+            this.rb_adddevmember.CheckedChanged += new System.EventHandler(this.rb_adddevmember_CheckedChanged);
+            // 
+            // bt_logout
+            // 
+            this.bt_logout.Location = new System.Drawing.Point(777, 0);
+            this.bt_logout.Name = "bt_logout";
+            this.bt_logout.Size = new System.Drawing.Size(113, 23);
+            this.bt_logout.TabIndex = 72;
+            this.bt_logout.Text = "Log Out";
+            this.bt_logout.UseVisualStyleBackColor = true;
+            this.bt_logout.Click += new System.EventHandler(this.bt_logout_Click);
+            // 
             // bt_execute2
             // 
             this.bt_execute2.Location = new System.Drawing.Point(730, 469);
@@ -409,7 +433,7 @@
             // rb_delete_genre
             // 
             this.rb_delete_genre.AutoSize = true;
-            this.rb_delete_genre.Location = new System.Drawing.Point(13, 519);
+            this.rb_delete_genre.Location = new System.Drawing.Point(13, 539);
             this.rb_delete_genre.Name = "rb_delete_genre";
             this.rb_delete_genre.Size = new System.Drawing.Size(88, 17);
             this.rb_delete_genre.TabIndex = 69;
@@ -421,7 +445,7 @@
             // rb_delete_developer
             // 
             this.rb_delete_developer.AutoSize = true;
-            this.rb_delete_developer.Location = new System.Drawing.Point(352, 496);
+            this.rb_delete_developer.Location = new System.Drawing.Point(352, 516);
             this.rb_delete_developer.Name = "rb_delete_developer";
             this.rb_delete_developer.Size = new System.Drawing.Size(108, 17);
             this.rb_delete_developer.TabIndex = 68;
@@ -433,7 +457,7 @@
             // rb_delete_department
             // 
             this.rb_delete_department.AutoSize = true;
-            this.rb_delete_department.Location = new System.Drawing.Point(104, 496);
+            this.rb_delete_department.Location = new System.Drawing.Point(104, 516);
             this.rb_delete_department.Name = "rb_delete_department";
             this.rb_delete_department.Size = new System.Drawing.Size(114, 17);
             this.rb_delete_department.TabIndex = 67;
@@ -445,7 +469,7 @@
             // rb_delete_game
             // 
             this.rb_delete_game.AutoSize = true;
-            this.rb_delete_game.Location = new System.Drawing.Point(240, 495);
+            this.rb_delete_game.Location = new System.Drawing.Point(240, 515);
             this.rb_delete_game.Name = "rb_delete_game";
             this.rb_delete_game.Size = new System.Drawing.Size(87, 17);
             this.rb_delete_game.TabIndex = 66;
@@ -457,7 +481,7 @@
             // rb_delete_user
             // 
             this.rb_delete_user.AutoSize = true;
-            this.rb_delete_user.Location = new System.Drawing.Point(13, 496);
+            this.rb_delete_user.Location = new System.Drawing.Point(13, 516);
             this.rb_delete_user.Name = "rb_delete_user";
             this.rb_delete_user.Size = new System.Drawing.Size(81, 17);
             this.rb_delete_user.TabIndex = 65;
@@ -469,7 +493,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(10, 471);
+            this.label21.Location = new System.Drawing.Point(10, 491);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(94, 13);
             this.label21.TabIndex = 64;
@@ -478,7 +502,7 @@
             // rb_update_genre
             // 
             this.rb_update_genre.AutoSize = true;
-            this.rb_update_genre.Location = new System.Drawing.Point(13, 439);
+            this.rb_update_genre.Location = new System.Drawing.Point(13, 459);
             this.rb_update_genre.Name = "rb_update_genre";
             this.rb_update_genre.Size = new System.Drawing.Size(92, 17);
             this.rb_update_genre.TabIndex = 63;
@@ -490,7 +514,7 @@
             // rb_update_developr
             // 
             this.rb_update_developr.AutoSize = true;
-            this.rb_update_developr.Location = new System.Drawing.Point(352, 416);
+            this.rb_update_developr.Location = new System.Drawing.Point(352, 436);
             this.rb_update_developr.Name = "rb_update_developr";
             this.rb_update_developr.Size = new System.Drawing.Size(112, 17);
             this.rb_update_developr.TabIndex = 62;
@@ -502,7 +526,7 @@
             // rb_update_department
             // 
             this.rb_update_department.AutoSize = true;
-            this.rb_update_department.Location = new System.Drawing.Point(104, 416);
+            this.rb_update_department.Location = new System.Drawing.Point(104, 436);
             this.rb_update_department.Name = "rb_update_department";
             this.rb_update_department.Size = new System.Drawing.Size(118, 17);
             this.rb_update_department.TabIndex = 61;
@@ -514,7 +538,7 @@
             // rb_update_game
             // 
             this.rb_update_game.AutoSize = true;
-            this.rb_update_game.Location = new System.Drawing.Point(255, 416);
+            this.rb_update_game.Location = new System.Drawing.Point(255, 436);
             this.rb_update_game.Name = "rb_update_game";
             this.rb_update_game.Size = new System.Drawing.Size(91, 17);
             this.rb_update_game.TabIndex = 60;
@@ -526,7 +550,7 @@
             // rb_update_user
             // 
             this.rb_update_user.AutoSize = true;
-            this.rb_update_user.Location = new System.Drawing.Point(13, 416);
+            this.rb_update_user.Location = new System.Drawing.Point(13, 436);
             this.rb_update_user.Name = "rb_update_user";
             this.rb_update_user.Size = new System.Drawing.Size(85, 17);
             this.rb_update_user.TabIndex = 59;
@@ -538,7 +562,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(10, 391);
+            this.label20.Location = new System.Drawing.Point(10, 411);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(98, 13);
             this.label20.TabIndex = 58;
@@ -559,7 +583,7 @@
             // rb_add_genre
             // 
             this.rb_add_genre.AutoSize = true;
-            this.rb_add_genre.Location = new System.Drawing.Point(298, 364);
+            this.rb_add_genre.Location = new System.Drawing.Point(88, 387);
             this.rb_add_genre.Name = "rb_add_genre";
             this.rb_add_genre.Size = new System.Drawing.Size(76, 17);
             this.rb_add_genre.TabIndex = 55;
@@ -595,7 +619,7 @@
             // rb_add_game
             // 
             this.rb_add_game.AutoSize = true;
-            this.rb_add_game.Location = new System.Drawing.Point(375, 364);
+            this.rb_add_game.Location = new System.Drawing.Point(13, 387);
             this.rb_add_game.Name = "rb_add_game";
             this.rb_add_game.Size = new System.Drawing.Size(75, 17);
             this.rb_add_game.TabIndex = 51;
@@ -1005,16 +1029,6 @@
             this.dgv_admin_users.TabIndex = 0;
             this.dgv_admin_users.SelectionChanged += new System.EventHandler(this.dgv_admin_users_SelectionChanged);
             // 
-            // bt_logout
-            // 
-            this.bt_logout.Location = new System.Drawing.Point(777, 0);
-            this.bt_logout.Name = "bt_logout";
-            this.bt_logout.Size = new System.Drawing.Size(113, 23);
-            this.bt_logout.TabIndex = 72;
-            this.bt_logout.Text = "Log Out";
-            this.bt_logout.UseVisualStyleBackColor = true;
-            this.bt_logout.Click += new System.EventHandler(this.bt_logout_Click);
-            // 
             // UserInterFace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1126,5 +1140,6 @@
         private System.Windows.Forms.Button bt_programmers_rungame;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button bt_logout;
+        private System.Windows.Forms.RadioButton rb_adddevmember;
     }
 }

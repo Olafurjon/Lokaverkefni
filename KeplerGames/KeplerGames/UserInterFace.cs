@@ -1661,6 +1661,53 @@ namespace KeplerGames
                 }
             }/*End Delete Department*/
 
+            if (bt_executehelper == 16) /* Add dev_member */
+            {
+                TextBox[] tbarray = { tb_dynamic1, tb_dynamic2, tb_dynamic3, tb_dynamic4, tb_dynamic5, tb_dynamic6, tb_dynamic7, tb_dynamic8, tb_dynamic9, tb_dynamic10, tb_dynamic11, tb_dynamic12, tb_dynamic13, tb_dynamic14, tb_dynamic15 };
+                string[] text = new string[10];
+                bool error = false;
+                for (int i = 0; i < dgv_admin_users.ColumnCount; i++)
+                {
+                    tbarray[i].BackColor = Color.White;
+                }
+
+                for (int i = 0; i < dgv_admin_users.ColumnCount; i++)
+                {
+                    text[i] = tbarray[i].Text;
+                    if (tbarray[i].Text == "")
+                    {
+                        tbarray[i].BackColor = Color.Red;
+                        error = true;
+
+                    }
+
+                }
+                if (error == true)
+                {
+                    MessageBox.Show("Please fill inn all the boxes");
+                }
+                else
+                {
+
+                    try
+                    {
+                        callDB.AddDevMember(Convert.ToInt32(text[0]), Convert.ToInt32(text[1]), text[2]);
+                        rb_adddevmember.Checked = false;
+                        MessageBox.Show("Success");
+                        dgv_admin_users.DataSource = null;
+                        dgv_admin_users.Rows.Clear();
+                        DataSet table = callDB.InfoToDataGrid("SELECT user_id,dev_id,title FROM developermembers");
+                        dgv_admin_users.DataSource = table.Tables[0];
+                    }
+                    catch (MySqlException ex)
+                    {
+                        callDB.CloseConnection();
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+
+            }/* end Add dev_member */
+
         }
 
         private void rb_add_dev_CheckedChanged(object sender, EventArgs e)
@@ -2347,6 +2394,53 @@ namespace KeplerGames
                 }
             }
 
+
+        }
+
+        private void rb_adddevmember_CheckedChanged(object sender, EventArgs e)
+        {
+            HideDynamic();
+            Label[] labelarray = { label2, label3, label4, label5, label6, label7, label8, label9, label10, label11, label12, label13, label14, label15, label16 };
+            TextBox[] tbarray = { tb_dynamic1, tb_dynamic2, tb_dynamic3, tb_dynamic4, tb_dynamic5, tb_dynamic6, tb_dynamic7, tb_dynamic8, tb_dynamic9, tb_dynamic10, tb_dynamic11, tb_dynamic12, tb_dynamic13, tb_dynamic14, tb_dynamic15 };
+            dgv_admin_users.DataSource = null;
+            dgv_admin_users.Rows.Clear();
+            DataSet table = callDB.InfoToDataGrid("SELECT user_id,dev_id,dev_title FROM developermembers");
+            dgv_admin_users.DataSource = table.Tables[0];
+            
+            if (dgv_admin_users.ColumnCount > 13)
+            {
+                bt_execute.Location = new Point(466, 471);
+            }
+            else
+            {
+                bt_execute.Location = new Point(729, 469);
+            }
+            for (int i = 0; i < dgv_admin_users.ColumnCount; i++)
+            {
+
+                string[] data;
+                data = new string[dgv_admin_users.ColumnCount];
+                string[] info;
+                info = new string[dgv_admin_users.ColumnCount];
+                info[i] = dgv_admin_users.Columns[i].Name;
+
+                tbarray[i].Clear();
+
+                labelarray[i].Text = info[i].ToUpper();
+                labelarray[i].Visible = true;
+                if (labelarray[i].Text == "PASS")
+                {
+                    tbarray[i].PasswordChar = '*';
+
+                }
+
+                tbarray[i].Visible = true;
+
+            }
+
+            bt_executehelper = 16; //Segir hey þú ert í Add Dev.Member
+            bt_execute.Text = "Add Dev.Member";
+            bt_execute.Visible = true;
 
         }
     }
