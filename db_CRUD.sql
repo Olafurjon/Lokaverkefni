@@ -291,10 +291,10 @@ DROP PROCEDURE IF EXISTS GamesList $$
 CREATE PROCEDURE GamesList()
   BEGIN
     SELECT
-      games.name,
-      games.dateadded,
-      games.description,
-      developers.name AS Developer
+      games.name AS 'Name',
+      developers.name AS 'Developer',
+      games.description AS 'Description',
+      games.dateadded AS 'Date Added'
     FROM games
       INNER JOIN developers ON games.dev_id = developers.dev_id;
   END $$
