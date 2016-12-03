@@ -44,3 +44,18 @@ D:\Tskoli 2016 seinni önn\Git\Lokaverkefni\KeplerGames\KeplerGames\obj\Debug\Ke
 D:\Tskoli 2016 seinni önn\Git\Lokaverkefni\KeplerGames\KeplerGames\obj\Debug\KeplerGames.csproj.GenerateResource.Cache
 D:\Tskoli 2016 seinni önn\Git\Lokaverkefni\KeplerGames\KeplerGames\obj\Debug\KeplerGames.exe.manifest
 D:\Tskoli 2016 seinni önn\Git\Lokaverkefni\KeplerGames\KeplerGames\obj\Debug\KeplerGames.application
+C:\Users\Valdi1212\Desktop\Lokaverkefni\KeplerGames\KeplerGames\bin\Debug\KeplerGames.exe.config
+C:\Users\Valdi1212\Desktop\Lokaverkefni\KeplerGames\KeplerGames\obj\Debug\KeplerGames.exe
+C:\Users\Valdi1212\Desktop\Lokaverkefni\KeplerGames\KeplerGames\obj\Debug\KeplerGames.pdb
+C:\Users\Valdi1212\Desktop\Lokaverkefni\KeplerGames\KeplerGames\bin\Debug\KeplerGames.exe.manifest
+C:\Users\Valdi1212\Desktop\Lokaverkefni\KeplerGames\KeplerGames\bin\Debug\KeplerGames.application
+C:\Users\Valdi1212\Desktop\Lokaverkefni\KeplerGames\KeplerGames\bin\Debug\KeplerGames.exe
+C:\Users\Valdi1212\Desktop\Lokaverkefni\KeplerGames\KeplerGames\bin\Debug\KeplerGames.pdb
+C:\Users\Valdi1212\Desktop\Lokaverkefni\KeplerGames\KeplerGames\obj\Debug\KeplerGames.csprojResolveAssemblyReference.cache
+C:\Users\Valdi1212\Desktop\Lokaverkefni\KeplerGames\KeplerGames\obj\Debug\KeplerGames.LoginWindow.resources
+C:\Users\Valdi1212\Desktop\Lokaverkefni\KeplerGames\KeplerGames\obj\Debug\KeplerGames.Properties.Resources.resources
+C:\Users\Valdi1212\Desktop\Lokaverkefni\KeplerGames\KeplerGames\obj\Debug\KeplerGames.UserInterFace.resources
+C:\Users\Valdi1212\Desktop\Lokaverkefni\KeplerGames\KeplerGames\obj\Debug\KeplerGames.VerifyPass.resources
+C:\Users\Valdi1212\Desktop\Lokaverkefni\KeplerGames\KeplerGames\obj\Debug\KeplerGames.csproj.GenerateResource.Cache
+C:\Users\Valdi1212\Desktop\Lokaverkefni\KeplerGames\KeplerGames\obj\Debug\KeplerGames.exe.manifest
+C:\Users\Valdi1212\Desktop\Lokaverkefni\KeplerGames\KeplerGames\obj\Debug\KeplerGames.application

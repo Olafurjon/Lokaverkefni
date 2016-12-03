@@ -94,7 +94,7 @@ namespace KeplerGames /*HÖF: Ólafur Jón Valgeirsson*/
                     
                     query = "UPDATE Users SET LoggedIn = 1 WHERE username = user";
                     sqlcommand = new MySqlCommand(query, sqlconnection);
-                    sqlreader = sqlcommand.ExecuteReader();
+                    sqlcommand.ExecuteNonQuery();
                     CloseConnection();
                 }
                 
@@ -104,8 +104,9 @@ namespace KeplerGames /*HÖF: Ólafur Jón Valgeirsson*/
             {
                 if (OpenConnection() == true)
                 {
-                    query = "Select access_level FROM users WHERE username ='" + username + "'";
+                    query = "Select access_level FROM users WHERE username ='@username'";
                     sqlcommand = new MySqlCommand(query, sqlconnection);
+                    sqlcommand.Parameters.AddWithValue("username", username);
                     sqlreader = sqlcommand.ExecuteReader();
                     while (sqlreader.Read())
                     {
@@ -138,8 +139,10 @@ namespace KeplerGames /*HÖF: Ólafur Jón Valgeirsson*/
                     
                    
                     
-                    query = "SELECT username,pass,access_level FROM users WHERE username ='"+username+"'AND pass='"+password+"'";
+                    query = "SELECT username,pass,access_level FROM users WHERE username =@username AND pass=@password";
                     sqlcommand = new MySqlCommand(query, sqlconnection);
+                    sqlcommand.Parameters.AddWithValue("username", username);
+                    sqlcommand.Parameters.AddWithValue("password", password);
                     sqlreader = sqlcommand.ExecuteReader();
                     int teljari = 0;
                     while (sqlreader.Read())
@@ -149,8 +152,6 @@ namespace KeplerGames /*HÖF: Ólafur Jón Valgeirsson*/
                         userInfo[2] = Convert.ToString(sqlreader.GetValue(2));
                         clearance = Convert.ToInt32(sqlreader.GetValue(2));
                         teljari += 1;
-                        
-                        
                     }
                     userloggedin = username;
                     
@@ -165,12 +166,10 @@ namespace KeplerGames /*HÖF: Ólafur Jón Valgeirsson*/
                             CloseConnection();
                             OpenConnection();
 
-                            query = "UPDATE Users SET LoggedIn = 1 WHERE username = '"+username+"'";
+                            query = "UPDATE Users SET LoggedIn = 1 WHERE username =@username";
                             sqlcommand = new MySqlCommand(query, sqlconnection);
-                            sqlreader = sqlcommand.ExecuteReader();
-                            
-                           
- 
+                            sqlcommand.Parameters.AddWithValue("username", username);
+                            sqlcommand.ExecuteNonQuery();
                         }
                         return userInfo;
                     
@@ -213,15 +212,22 @@ namespace KeplerGames /*HÖF: Ólafur Jón Valgeirsson*/
                 
         }
 
-        public void CreateUser(int dep_id,string name, string email, string username, string pass, int access_level, string title)
+        public void CreateUser(int dep_id, string name, string email, string username, string pass, int access_level, string title)
         {
             DateTime date = DateTime.Now;
             date.ToUniversalTime();
             if (OpenConnection() == true)
             {
-                query = "Call UsersCreate(" + dep_id + ",'" + name + "','" + email + "','" + username + "','" + pass + "'," + access_level + ",'" + title + "','"+ date.ToString(string.Format("yy/MM/dd hh:mm:ss"))+"')"; /*Þurti að breyta formattinu til að þetta færi vandræðalaust í MySQL grunnin*/
+                query = "Call UsersCreate(@dep_id, @name, @email, @username, @pass, @access_level, @title)";
                 sqlcommand = new MySqlCommand(query, sqlconnection);
-                sqlreader = sqlcommand.ExecuteReader();
+                sqlcommand.Parameters.AddWithValue("dep_id", dep_id);
+                sqlcommand.Parameters.AddWithValue("name", name);
+                sqlcommand.Parameters.AddWithValue("email", email);
+                sqlcommand.Parameters.AddWithValue("username", username);
+                sqlcommand.Parameters.AddWithValue("pass", pass);
+                sqlcommand.Parameters.AddWithValue("access_level", access_level);
+                sqlcommand.Parameters.AddWithValue("title", title);
+                sqlcommand.ExecuteNonQuery();
                 CloseConnection();
             }
             CloseConnection();
@@ -231,9 +237,10 @@ namespace KeplerGames /*HÖF: Ólafur Jón Valgeirsson*/
         {
             if (OpenConnection() == true)
             {
-                query = "INSERT INTO departments(name) VALUES ('"+name+"')";
+                query = "INSERT INTO departments(name) VALUES (@name)";
                 sqlcommand = new MySqlCommand(query, sqlconnection);
-                sqlreader = sqlcommand.ExecuteReader();
+                sqlcommand.Parameters.AddWithValue("name", name);
+                sqlcommand.ExecuteNonQuery();
                 CloseConnection();
             }
             CloseConnection();
@@ -244,9 +251,11 @@ namespace KeplerGames /*HÖF: Ólafur Jón Valgeirsson*/
             
             if (OpenConnection() == true)
             {
-                query = "INSERT INTO developers(name, description) VALUES('"+name+"','"+desc+"')";
+                query = "INSERT INTO developers(name, description) VALUES(@name, @desc)";
                 sqlcommand = new MySqlCommand(query, sqlconnection);
-                sqlreader = sqlcommand.ExecuteReader();
+                sqlcommand.Parameters.AddWithValue("name", name);
+                sqlcommand.Parameters.AddWithValue("desc", desc);
+                sqlcommand.ExecuteNonQuery();
                 CloseConnection();
             }
             CloseConnection();
@@ -256,9 +265,10 @@ namespace KeplerGames /*HÖF: Ólafur Jón Valgeirsson*/
         {
             if (OpenConnection() == true)
             {
-                query = "INSERT INTO Genres(name) VALUES ('" + name + "')";
+                query = "INSERT INTO Genres(name) VALUES (@name)";
                 sqlcommand = new MySqlCommand(query, sqlconnection);
-                sqlreader = sqlcommand.ExecuteReader();
+                sqlcommand.Parameters.AddWithValue("name", name);
+                sqlcommand.ExecuteNonQuery();
                 CloseConnection();
             }
             CloseConnection();
@@ -270,9 +280,13 @@ namespace KeplerGames /*HÖF: Ólafur Jón Valgeirsson*/
             DateTime date = DateTime.Now;
             if (OpenConnection() == true)
             {
-                query = "INSERT INTO `games`( `name`, `dev_id`, `path`, `dateadded`, `description`) VALUES('"+name+"',"+dev_id+",'"+path+"','"+ date.ToString(string.Format("yy/MM/dd hh:mm:ss"))+"','"+description+"')";
+                query = "CALL GamesCreate(@name, @dev_id, @path, @description)";
                 sqlcommand = new MySqlCommand(query, sqlconnection);
-                sqlreader = sqlcommand.ExecuteReader();
+                sqlcommand.Parameters.AddWithValue("name", name);
+                sqlcommand.Parameters.AddWithValue("dev_id", dev_id);
+                sqlcommand.Parameters.AddWithValue("path", path);
+                sqlcommand.Parameters.AddWithValue("description", description);
+                sqlcommand.ExecuteNonQuery();
                 CloseConnection();
             }
             CloseConnection();
@@ -282,10 +296,16 @@ namespace KeplerGames /*HÖF: Ólafur Jón Valgeirsson*/
         {
             if (OpenConnection() == true)
             {
-                query = "UPDATE users SET dep_id="+depid+",name='"+name+"',email='"+email+"',username='"+username+"',pass='"+pass+"',access_level="+access_level+",loggedin="+logged+",title='"+title+"' WHERE username ='"+oldusername +"'";
-                //UPDATE `users` SET dep_id = 4, name = 'Ólafur Jón Valgeirsson',email= 'olafurjonb2@hotmail.com',username= 'OlaVal',pass='pass.123',access_level=4,joined='2016/11/16',loggedin=1,title='CEO' WHERE username = 'Olaval'
+                query = "CALL UsersUpdate(@dep_id, @name, @email, @username, @pass, @access_level, @title, @oldusername)";
                 sqlcommand = new MySqlCommand(query, sqlconnection);
-                sqlreader = sqlcommand.ExecuteReader();
+                sqlcommand.Parameters.AddWithValue("dep_id", depid);
+                sqlcommand.Parameters.AddWithValue("name", name);
+                sqlcommand.Parameters.AddWithValue("email", email);
+                sqlcommand.Parameters.AddWithValue("username", username);
+                sqlcommand.Parameters.AddWithValue("access_level", access_level);
+                sqlcommand.Parameters.AddWithValue("title", title);
+                sqlcommand.Parameters.AddWithValue("oldusername", oldusername);
+                sqlcommand.ExecuteNonQuery();
                 CloseConnection();
             }
             CloseConnection();
@@ -295,22 +315,28 @@ namespace KeplerGames /*HÖF: Ólafur Jón Valgeirsson*/
         {
             if (OpenConnection() == true)
             {
-                query = "UPDATE Departments SET name='" + name + "' WHERE name ='" + oldname + "'";
+                query = "UPDATE Departments SET name=@name WHERE name =@oldname";
                 sqlcommand = new MySqlCommand(query, sqlconnection);
-                sqlreader = sqlcommand.ExecuteReader();
+                sqlcommand.Parameters.AddWithValue("name", name);
+                sqlcommand.Parameters.AddWithValue("oldname", oldname);
+                sqlcommand.ExecuteNonQuery();
                 CloseConnection();
             }
             CloseConnection();
         }/*Uppfærir Department, ADMINPANEL*/
 
-        public void UpdateGame(string name,int dev_id, string path, string desc, string oldname)
+        public void UpdateGame(string name, int dev_id, string path, string desc, string oldname)
         {
             if (OpenConnection() == true)
             {
-                query = "UPDATE `games` SET `name`='"+name+"',`dev_id`="+dev_id+",`path`='"+path+"',`description`='"+desc+"' WHERE name ='"+oldname+"'";
-                //UPDATE `users` SET dep_id = 4, name = 'Ólafur Jón Valgeirsson',email= 'olafurjonb2@hotmail.com',username= 'OlaVal',pass='pass.123',access_level=4,joined='2016/11/16',loggedin=1,title='CEO' WHERE username = 'Olaval'
+                query = "CALL GamesUpdate(@dev_id, @name, @path, @desc, @oldname)";
                 sqlcommand = new MySqlCommand(query, sqlconnection);
-                sqlreader = sqlcommand.ExecuteReader();
+                sqlcommand.Parameters.AddWithValue("dev_id", dev_id);
+                sqlcommand.Parameters.AddWithValue("name", name);
+                sqlcommand.Parameters.AddWithValue("path", path);
+                sqlcommand.Parameters.AddWithValue("desc", desc);
+                sqlcommand.Parameters.AddWithValue("oldname", oldname);
+                sqlcommand.ExecuteNonQuery();
                 CloseConnection();
             }
             CloseConnection();
@@ -320,9 +346,12 @@ namespace KeplerGames /*HÖF: Ólafur Jón Valgeirsson*/
         {
             if (OpenConnection() == true)
             {
-                query = "UPDATE Developers SET name='" + name + "',description='" + desc + "' WHERE name ='" + oldname + "'";
+                query = "CALL DevelopersUpdate(@name, @desc, @oldname)";
                 sqlcommand = new MySqlCommand(query, sqlconnection);
-                sqlreader = sqlcommand.ExecuteReader();
+                sqlcommand.Parameters.AddWithValue("name", name);
+                sqlcommand.Parameters.AddWithValue("desc", desc);
+                sqlcommand.Parameters.AddWithValue("oldname", oldname);
+                sqlcommand.ExecuteNonQuery();
                 CloseConnection();
             }
             CloseConnection();
@@ -332,9 +361,11 @@ namespace KeplerGames /*HÖF: Ólafur Jón Valgeirsson*/
         {
             if (OpenConnection() == true)
             {
-                query = "UPDATE Genres SET name='" + name + "' WHERE name ='" + oldname + "'";
+                query = "UPDATE Genres SET name=@name WHERE name =@oldname";
                 sqlcommand = new MySqlCommand(query, sqlconnection);
-                sqlreader = sqlcommand.ExecuteReader();
+                sqlcommand.Parameters.AddWithValue("name", name);
+                sqlcommand.Parameters.AddWithValue("oldname", oldname);
+                sqlcommand.ExecuteNonQuery();
                 CloseConnection();
             }
             CloseConnection();
@@ -344,9 +375,10 @@ namespace KeplerGames /*HÖF: Ólafur Jón Valgeirsson*/
         {
             if (OpenConnection() == true)
             {
-                query = "DELETE FROM `genres` WHERE name ='"+name+"'";
+                query = "DELETE FROM `genres` WHERE name =@name";
                 sqlcommand = new MySqlCommand(query, sqlconnection);
-                sqlreader = sqlcommand.ExecuteReader();
+                sqlcommand.Parameters.AddWithValue("name", name);
+                sqlcommand.ExecuteNonQuery();
                 CloseConnection();
             }
             CloseConnection();
@@ -356,9 +388,10 @@ namespace KeplerGames /*HÖF: Ólafur Jón Valgeirsson*/
         {
             if (OpenConnection() == true)
             {
-                query = "DELETE FROM `users` WHERE name ='" + username + "'";
+                query = "CALL UsersDelete(@username)";
                 sqlcommand = new MySqlCommand(query, sqlconnection);
-                sqlreader = sqlcommand.ExecuteReader();
+                sqlcommand.Parameters.AddWithValue("username", username);
+                sqlcommand.ExecuteNonQuery();
                 CloseConnection();
             }
             CloseConnection();
@@ -368,9 +401,10 @@ namespace KeplerGames /*HÖF: Ólafur Jón Valgeirsson*/
         {
             if (OpenConnection() == true)
             {
-                query = "DELETE FROM `games` WHERE name ='" + name + "'";
+                query = "CALL GamesDelete(@name)";
                 sqlcommand = new MySqlCommand(query, sqlconnection);
-                sqlreader = sqlcommand.ExecuteReader();
+                sqlcommand.Parameters.AddWithValue("name", name);
+                sqlcommand.ExecuteNonQuery();
                 CloseConnection();
             }
             CloseConnection();
@@ -380,9 +414,10 @@ namespace KeplerGames /*HÖF: Ólafur Jón Valgeirsson*/
         {
             if (OpenConnection() == true)
             {
-                query = "DELETE FROM `Developers` WHERE name ='" + name + "'";
+                query = "DELETE FROM `Developers` WHERE name =@name";
                 sqlcommand = new MySqlCommand(query, sqlconnection);
-                sqlreader = sqlcommand.ExecuteReader();
+                sqlcommand.Parameters.AddWithValue("name", name);
+                sqlcommand.ExecuteNonQuery();
                 CloseConnection();
             }
             CloseConnection();
@@ -392,9 +427,10 @@ namespace KeplerGames /*HÖF: Ólafur Jón Valgeirsson*/
         {
             if (OpenConnection() == true)
             {
-                query = "DELETE FROM `Departments` WHERE name ='" + name + "'";
+                query = "DELETE FROM `Departments` WHERE name =@name";
                 sqlcommand = new MySqlCommand(query, sqlconnection);
-                sqlreader = sqlcommand.ExecuteReader();
+                sqlcommand.Parameters.AddWithValue("name", name);
+                sqlcommand.ExecuteNonQuery();
                 CloseConnection();
             }
             CloseConnection();
@@ -402,46 +438,23 @@ namespace KeplerGames /*HÖF: Ólafur Jón Valgeirsson*/
 
         public void PostReview(string gamename ,string user, string comment)
         {
-
-            int userid = 0;
-            int gameid = 0;
-
-
             if (OpenConnection() == true)
             {
+
+                query = "CALL PostReview(@username, @gamename, @comment)";
+                sqlcommand = new MySqlCommand(query, sqlconnection);
+                sqlcommand.Parameters.AddWithValue("username", user);
+                sqlcommand.Parameters.AddWithValue("gamename", gamename);
+                sqlcommand.Parameters.AddWithValue("comment", comment);
+                sqlcommand.ExecuteNonQuery();
+                CloseConnection();
+            }
+            CloseConnection();
                 
-                query = "SELECT user_id FROM users WHERE username ='" + user + "'";
-                sqlcommand = new MySqlCommand(query, sqlconnection);
-                sqlreader = sqlcommand.ExecuteReader();
-                while (sqlreader.Read())
-                {
-                    userid = Convert.ToInt32(sqlreader.GetValue(0));
 
-                }
-                CloseConnection();
-                OpenConnection();
-                query = "SELECT game_id FROM games WHERE name ='" + gamename + "'";
-                sqlcommand = new MySqlCommand(query, sqlconnection);
-                sqlreader = sqlcommand.ExecuteReader();
-                while (sqlreader.Read())
-                {
-                    gameid = Convert.ToInt32(sqlreader.GetValue(0));
+        }
 
-                }
-                CloseConnection();
-                OpenConnection();
-                DateTime date = DateTime.Now;
-                date.ToUniversalTime();
-                    query = "INSERT INTO `comments`(`date`, `user_id`, `game_id`, `comment`) VALUES (curdate()," + userid + ",'"+gameid+"','"+comment+"')";
-                    sqlcommand = new MySqlCommand(query, sqlconnection);
-                    sqlreader = sqlcommand.ExecuteReader();
-                    CloseConnection();
-                }
-                CloseConnection();
-
-        }/*, Review Panel*/
-
-        public void AddGameProgrammer(string name, string path, string description,string user)
+        public void AddGameProgrammer(string name, string path, string description, string user)
         {
 
             DateTime date = DateTime.Now;
@@ -452,8 +465,9 @@ namespace KeplerGames /*HÖF: Ólafur Jón Valgeirsson*/
                     JOIN Developermembers ON developermembers.dev_id = developers.dev_id
                     JOIN users ON Developermembers.user_id = users.user_id
                     WHERE Username = 'OlaVal'*/
-                query = "SELECT developers.dev_id FROM Developers JOIN Developermembers ON developermembers.dev_id = developers.dev_id  JOIN users ON Developermembers.user_id = users.user_id WHERE username ='" + user + "'";
+                query = "SELECT developers.dev_id FROM Developers JOIN Developermembers ON developermembers.dev_id = developers.dev_id  JOIN users ON Developermembers.user_id = users.user_id WHERE username =@user";
                 sqlcommand = new MySqlCommand(query, sqlconnection);
+                sqlcommand.Parameters.AddWithValue("user", user);
                 sqlreader = sqlcommand.ExecuteReader();
                 while (sqlreader.Read())
                 {
@@ -462,9 +476,13 @@ namespace KeplerGames /*HÖF: Ólafur Jón Valgeirsson*/
                 }
                 CloseConnection();
                 OpenConnection();
-                query = "INSERT INTO `games`( `name`, `dev_id`, `path`, `dateadded`, `description`) VALUES('" + name + "'," + devid + ",'" + path + "','" + date.ToString(string.Format("yy/MM/dd hh:mm:ss")) + "','" + description + "')";
+                query = "INSERT INTO `games`( `name`, `dev_id`, `path`, `dateadded`, `description`) VALUES(@name, @dev_id, @path, '" + date.ToString(string.Format("yy/MM/dd hh:mm:ss")) + "',@description)";
                 sqlcommand = new MySqlCommand(query, sqlconnection);
-                sqlreader = sqlcommand.ExecuteReader();
+                sqlcommand.Parameters.AddWithValue("name", name);
+                sqlcommand.Parameters.AddWithValue("dev_id", devid);
+                sqlcommand.Parameters.AddWithValue("path", path);
+                sqlcommand.Parameters.AddWithValue("description", description);
+                sqlcommand.ExecuteNonQuery();
                 CloseConnection();
             }
             CloseConnection();
@@ -474,9 +492,11 @@ namespace KeplerGames /*HÖF: Ólafur Jón Valgeirsson*/
         {
             if (OpenConnection() == true)
             {
-                query = "UPDATE Users SET LoggedIn = "+x+" WHERE username = '" + username + "'";
+                query = "UPDATE Users SET LoggedIn = @x WHERE username = @username";
                 sqlcommand = new MySqlCommand(query, sqlconnection);
-                sqlreader = sqlcommand.ExecuteReader();
+                sqlcommand.Parameters.AddWithValue("x", x);
+                sqlcommand.Parameters.AddWithValue("username", username);
+                sqlcommand.ExecuteNonQuery();
                 CloseConnection();
             }
             CloseConnection();
@@ -487,8 +507,9 @@ namespace KeplerGames /*HÖF: Ólafur Jón Valgeirsson*/
             int status = 3;
             if (OpenConnection() == true)
             {
-                query = "SELECT LoggedIn FROM users WHERE username ='" + username + "'";
+                query = "SELECT LoggedIn FROM users WHERE username =@username";
                 sqlcommand = new MySqlCommand(query, sqlconnection);
+                sqlcommand.Parameters.AddWithValue("username", username);
                 sqlreader = sqlcommand.ExecuteReader();
                 while (sqlreader.Read())
                 {

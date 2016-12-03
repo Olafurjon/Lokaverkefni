@@ -66,6 +66,7 @@ DELIMITER ;
     password VARCHAR(35)
     access_level INT
     title VARCHAR(20)
+    old_username VARCHAR(35)
   @created: 26-11-2016
   @author: Valdimar Gunnarsson
   @description: See @role
@@ -73,11 +74,11 @@ DELIMITER ;
 DELIMITER $$
 DROP PROCEDURE IF EXISTS UsersUpdate $$
 CREATE PROCEDURE UsersUpdate(dep_id   INT, name VARCHAR(75), email VARCHAR(50), user_name VARCHAR(35),
-                             password VARCHAR(35), access_level INT, title VARCHAR(20))
+                             password VARCHAR(35), access_level INT, title VARCHAR(20), old_username VARCHAR(35))
   BEGIN
     UPDATE users
-    SET dep_id = dep_id, name = name, email = email, pass = password, access_level = access_level, title = title
-    WHERE users.username = user_name;
+    SET dep_id = dep_id, name = name, email = email, pass = password, username = user_name, access_level = access_level, title = title
+    WHERE users.username = old_username;
   END $$
 DELIMITER ;
 
@@ -139,7 +140,7 @@ CREATE PROCEDURE GamesRead(game_name VARCHAR(35))
       games.name,
       games.dateadded,
       games.description,
-      developers.name
+      developers.name AS Developer
     FROM games
       INNER JOIN developers ON games.dev_id = developers.dev_id
     WHERE game_name = games.name;
@@ -154,17 +155,18 @@ DELIMITER ;
     name VARCHAR(35)
     path VARCHAR(100)
     description VARCHAR(115)
+    old_name VARCHAR(35)
   @created: 3.12.2016
   @author: Valdimar Gunnarsson
   @description: See @role
  */
 DELIMITER $$
 DROP PROCEDURE IF EXISTS GamesUpdate $$
-CREATE PROCEDURE GamesUpdate(dev_id INT, game_name VARCHAR(35), path VARCHAR(100), description VARCHAR(115))
+CREATE PROCEDURE GamesUpdate(dev_id INT, game_name VARCHAR(35), path VARCHAR(100), description VARCHAR(115), old_name VARCHAR(35))
   BEGIN
     UPDATE games
     SET dev_id = dev_id, name = game_name, path = path, description = description
-    WHERE games.name = game_name;
+    WHERE games.name = old_name;
   END $$
 DELIMITER ;
 
@@ -238,11 +240,11 @@ DELIMITER ;
  */
 DELIMITER $$
 DROP PROCEDURE IF EXISTS DevelopersUpdate $$
-CREATE PROCEDURE DevelopersUpdate(dev_name VARCHAR(35), description VARCHAR(115))
+CREATE PROCEDURE DevelopersUpdate(dev_name VARCHAR(35), description VARCHAR(115), old_name VARCHAR(35))
   BEGIN
     UPDATE developers
-    SET description = description
-    WHERE developers.name = dev_name;
+    SET  name = dev_name, description = description
+    WHERE name = old_name;
   END $$
 DELIMITER ;
 
@@ -278,7 +280,7 @@ CREATE PROCEDURE UsersList()
       users.joined,
       users.loggedin,
       users.title,
-      departments.name
+      departments.name AS Department
     FROM users
       INNER JOIN departments ON users.dep_id = departments.dep_id;
   END $$
@@ -292,8 +294,52 @@ CREATE PROCEDURE GamesList()
       games.name,
       games.dateadded,
       games.description,
-      developers.name
+      developers.name AS Developer
     FROM games
       INNER JOIN developers ON games.dev_id = developers.dev_id;
+  END $$
+DELIMITER ;
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS AddGenreToGame $$
+CREATE PROCEDURE AddGenreToGame(game_name VARCHAR(35), genre_name VARCHAR(35))
+  BEGIN
+    DECLARE gameid INT;
+    DECLARE genreid INT;
+
+    SELECT game_id
+    FROM games
+    WHERE games.name = game_name
+    INTO gameid;
+
+    SELECT genre_id
+    FROM genres
+    WHERE genres.name = genre_name
+    INTO genreid;
+
+    INSERT INTO gamegenres (game_id, genre_id)
+    VALUES (gameid, genreid);
+  END $$
+DELIMITER ;
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS PostReview $$
+CREATE PROCEDURE PostReview(username VARCHAR(35), gamename VARCHAR(35), comment VARCHAR(255))
+  BEGIN
+    DECLARE gameid INT;
+    DECLARE userid INT;
+
+    SELECT game_id
+    FROM games
+    WHERE games.name = gamename
+    INTO gameid;
+
+    SELECT user_id
+    FROM users
+    WHERE users.username = username
+    INTO userid;
+
+    INSERT INTO comments (user_id, game_id, date, comment)
+    VALUES (userid, gameid, curdate(), comment);
   END $$
 DELIMITER ;
