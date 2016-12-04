@@ -169,6 +169,7 @@ namespace KeplerGames
                     data = new string[dgv_Games.ColumnCount];
                     string[] info;
                     info = new string[dgv_Games.ColumnCount];
+                    info[i] = dgv_Games.Columns[i].Name;
                     data[i] = dgv_Games.SelectedRows[0].Cells[i].Value + string.Empty; /*Þessi sér um að setja gildin úr töflunni í array svo ég geti notað*/
                     labelarray[i].Text = info[i].ToUpper();
                     labelarray[i].Visible = true;
@@ -603,7 +604,7 @@ namespace KeplerGames
                         bt_programmers.Visible = true;
                         dgv_Programmes.DataSource = null;
                         dgv_Programmes.Rows.Clear();
-                        DataSet table = callDB.InfoToDataGrid("SELECT name,description, ,dateadded dev_id,path,dateadded FROM games");
+                        DataSet table = callDB.InfoToDataGrid("SELECT game_id,Games.name,Developers.name AS Developers, path, dateadded, games.description FROM games JOIN Developers ON games.dev_id = Developers.dev_id");
                         dgv_Programmes.DataSource = table.Tables[0];
                     }
                     catch (MySqlException ex)
