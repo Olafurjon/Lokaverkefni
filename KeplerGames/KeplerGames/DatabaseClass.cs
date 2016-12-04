@@ -296,17 +296,29 @@ namespace KeplerGames /*HÖF: Ólafur Jón Valgeirsson*/
         {
             if (OpenConnection() == true)
             {
+                try
+                {
+
+              
                 query = "CALL UsersUpdate(@dep_id, @name, @email, @username, @pass, @access_level, @title, @oldusername)";
                 sqlcommand = new MySqlCommand(query, sqlconnection);
                 sqlcommand.Parameters.AddWithValue("dep_id", depid);
                 sqlcommand.Parameters.AddWithValue("name", name);
                 sqlcommand.Parameters.AddWithValue("email", email);
                 sqlcommand.Parameters.AddWithValue("username", username);
+                sqlcommand.Parameters.AddWithValue("pass", pass);
                 sqlcommand.Parameters.AddWithValue("access_level", access_level);
                 sqlcommand.Parameters.AddWithValue("title", title);
                 sqlcommand.Parameters.AddWithValue("oldusername", oldusername);
                 sqlcommand.ExecuteNonQuery();
                 CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+
+                    MessageBox.Show(ex.Message);
+                    CloseConnection();
+                }
             }
             CloseConnection();
         } /*Uppfærir users, ADMINPANEL*/
