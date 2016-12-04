@@ -169,17 +169,11 @@ namespace KeplerGames
                     data = new string[dgv_Games.ColumnCount];
                     string[] info;
                     info = new string[dgv_Games.ColumnCount];
-
-
-                    info[i] = dgv_Games.Columns[i].Name; /*Græjar að labelinn heiti það sama og dálkarnir*/
-
                     data[i] = dgv_Games.SelectedRows[0].Cells[i].Value + string.Empty; /*Þessi sér um að setja gildin úr töflunni í array svo ég geti notað*/
                     labelarray[i].Text = info[i].ToUpper();
                     labelarray[i].Visible = true;
                     tbarray[i].Text = data[i];
                     tbarray[i].Visible = true;
-
-
                 }
                 bt_rungame.Visible = true;
 
