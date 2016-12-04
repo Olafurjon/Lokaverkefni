@@ -1083,7 +1083,7 @@ namespace KeplerGames
             if (bt_executehelper == 6) /*Update Users*/
             {
                 string olduser = "";
-                olduser = tb_dynamic2.Text;
+                olduser = tb_dynamic4.Text;
                 oldname = olduser;
 
 
