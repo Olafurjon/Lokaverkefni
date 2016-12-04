@@ -104,7 +104,8 @@ namespace KeplerGames
             label14.Visible = false;
             label15.Visible = false;
             label16.Visible = false;
-
+            bt_execute.Visible = false;
+            bt_execute2.Visible = false;
             tb_dynamic1.Visible = false;
             tb_dynamic2.Visible = false;
             tb_dynamic3.Visible = false;
