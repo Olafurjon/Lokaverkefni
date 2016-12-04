@@ -104,7 +104,7 @@ namespace KeplerGames
             label14.Visible = false;
             label15.Visible = false;
             label16.Visible = false;
-            bt_execute.Visible = false;
+            
             bt_execute2.Visible = false;
             tb_dynamic1.Visible = false;
             tb_dynamic2.Visible = false;
@@ -662,9 +662,9 @@ namespace KeplerGames
             dgv_admin_users.Rows.Clear();
             DataSet table = callDB.InfoToDataGrid("SELECT * FROM USERS");
             dgv_admin_users.DataSource = table.Tables[0];
-            
-            
 
+      
+         
 
         } /**/
         public int bt_executehelper = 0;
@@ -1424,6 +1424,7 @@ namespace KeplerGames
                             callDB.DeleteGenre(text[0]);
                             MessageBox.Show("Success");
                             rb_delete_genre.Checked = false;
+                            bt_execute.Visible = false;
                             dgv_admin_users.DataSource = null;
                             dgv_admin_users.Rows.Clear();
                             DataSet table = callDB.InfoToDataGrid("SELECT name FROM Genres");
@@ -1479,10 +1480,12 @@ namespace KeplerGames
                             callDB.DeleteUser(text[0]);
                             MessageBox.Show("Success");
                             rb_delete_user.Checked = false;
+                            bt_execute.Visible = false;
                             dgv_admin_users.DataSource = null;
                             dgv_admin_users.Rows.Clear();
                             DataSet table = callDB.InfoToDataGrid("SELECT dep_id,name,email,username,pass,access_level,title FROM USERS");
                             dgv_admin_users.DataSource = table.Tables[0];
+                            
                         }
                         catch (MySqlException ex)
                         {
@@ -1533,10 +1536,11 @@ namespace KeplerGames
                         {
                             callDB.DeleteGame(text[0]);
                             MessageBox.Show("Success");
+                            bt_execute.Visible = false;
                             rb_delete_game.Checked = false;
                             dgv_admin_users.DataSource = null;
                             dgv_admin_users.Rows.Clear();
-                            DataSet table = callDB.InfoToDataGrid("SELECT name,description, ,dateadded dev_id,path,dateadded FROM games");
+                            DataSet table = callDB.InfoToDataGrid("SELECT name,description,dev_id,path,dateadded FROM games");
                             dgv_admin_users.DataSource = table.Tables[0];
                         }
                         catch (MySqlException ex)
@@ -1589,6 +1593,7 @@ namespace KeplerGames
                             callDB.DeleteDeveloper(text[0]);
                             MessageBox.Show("Success");
                             rb_delete_developer.Checked = false;
+                            bt_execute.Visible = false;
                             dgv_admin_users.DataSource = null;
                             dgv_admin_users.Rows.Clear();
                             DataSet table = callDB.InfoToDataGrid("SELECT name,description FROM Developers");
@@ -1643,6 +1648,7 @@ namespace KeplerGames
                         {
                             callDB.DeleteDepartments(text[0]);
                             MessageBox.Show("Success");
+                            bt_execute.Visible = false;
                             rb_delete_department.Checked = false;
                             dgv_admin_users.DataSource = null;
                             dgv_admin_users.Rows.Clear();
@@ -1694,6 +1700,7 @@ namespace KeplerGames
                     {
                         callDB.AddDevMember(Convert.ToInt32(text[0]), Convert.ToInt32(text[1]), text[2]);
                         rb_adddevmember.Checked = false;
+
                         MessageBox.Show("Success");
                         dgv_admin_users.DataSource = null;
                         dgv_admin_users.Rows.Clear();
