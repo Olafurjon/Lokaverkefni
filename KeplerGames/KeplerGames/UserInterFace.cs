@@ -663,9 +663,9 @@ namespace KeplerGames
             DataSet table = callDB.InfoToDataGrid("SELECT * FROM USERS");
             dgv_admin_users.DataSource = table.Tables[0];
 
-      
-         
 
+
+            
         } /**/
         public int bt_executehelper = 0;
 
@@ -878,6 +878,7 @@ namespace KeplerGames
                     {
                         callDB.CreateUser(Convert.ToInt32(text[0]), text[1], text[2], text[3], text[4], Convert.ToInt32(text[5]), text[6]);
                         rb_add_user.Checked = false;
+                        bt_execute.Visible = false;
                         MessageBox.Show("Success");
                         dgv_admin_users.DataSource = null;
                         dgv_admin_users.Rows.Clear();
@@ -925,6 +926,7 @@ namespace KeplerGames
                     {
                         callDB.CreateDeveloper(text[0], text[1]);
                         rb_add_dev.Checked = false;
+                        bt_execute.Visible = false;
                         MessageBox.Show("Success");
                         dgv_admin_users.DataSource = null;
                         dgv_admin_users.Rows.Clear();
@@ -974,6 +976,7 @@ namespace KeplerGames
                         callDB.CreateDepartments(text[0]);
                         MessageBox.Show("Success");
                         rb_add_dep.Checked = false;
+                        bt_execute.Visible = false;
                         dgv_admin_users.DataSource = null;
                         dgv_admin_users.Rows.Clear();
                         DataSet table = callDB.InfoToDataGrid("SELECT name FROM Departments");
@@ -1068,6 +1071,7 @@ namespace KeplerGames
                     {
                         callDB.AddGame(text[0], Convert.ToInt32(text[1]), text[2], text[3]);
                         MessageBox.Show("Success");
+                        bt_execute.Visible = false;
                         rb_add_game.Checked = false;
                         dgv_admin_users.DataSource = null;
                         dgv_admin_users.Rows.Clear();
@@ -1700,7 +1704,7 @@ namespace KeplerGames
                     {
                         callDB.AddDevMember(Convert.ToInt32(text[0]), Convert.ToInt32(text[1]), text[2]);
                         rb_adddevmember.Checked = false;
-
+                        bt_execute.Visible = false;
                         MessageBox.Show("Success");
                         dgv_admin_users.DataSource = null;
                         dgv_admin_users.Rows.Clear();
